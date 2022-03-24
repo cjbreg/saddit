@@ -1,0 +1,51 @@
+version: "3.9"
+
+services:
+  mysql:
+    container_name: mysql
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: unless-stopped
+    environment: 
+      MYSQL_ROOT_PASSWORD: root123
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - ./docker:/docker-entrypoint-initdb.d:z
+
+  gateway:
+    container_name: gateway
+    image: gateway
+    restart: always
+    build:
+      context: ./services/gateway
+      dockerfile: Dockerfile
+    ports:
+      - "5000:80"
+    depends_on:
+      - user-service
+      - authorization-service
+
+  user-service:
+    container_name: userService
+    image: user-service
+    restart: always
+    build:
+      context: ./services/user-service
+    ports:
+      - "8877:80"
+    depends_on:
+      - mysql
+  
+  authorization-service:
+    container_name: authorizationService
+    image: authorization-service
+    restart: always
+    build:
+      context: ./services/authorization-service
+    ports:
+      - "8878:80"
+    depends_on:
+      - mysql
