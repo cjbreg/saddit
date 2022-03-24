@@ -1,12 +1,14 @@
 version: "3.9"
 
 services:
-  mysql:
-    container_name: mysql
+  mysql-db:
+    container_name: mysqlDb
     image: mysql
     command: --default-authentication-plugin=mysql_native_password
     restart: unless-stopped
     environment: 
+      MYSQL_HOST: localhost
+      MYSQL_DATABASE: test
       MYSQL_ROOT_PASSWORD: root123
     ports:
       - '3306:3306'
@@ -37,7 +39,7 @@ services:
     ports:
       - "8877:80"
     depends_on:
-      - mysql
+      - mysql-db
   
   authorization-service:
     container_name: authorizationService
@@ -48,4 +50,8 @@ services:
     ports:
       - "8878:80"
     depends_on:
-      - mysql
+      - mysql-db
+
+volumes:
+  SadditMySQLVolume:
+    driver: local
