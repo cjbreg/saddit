@@ -6,7 +6,7 @@ services:
     image: mysql
     command: --default-authentication-plugin=mysql_native_password
     restart: unless-stopped
-    environment: 
+    environment:
       MYSQL_HOST: localhost
       MYSQL_DATABASE: test
       MYSQL_ROOT_PASSWORD: root123
@@ -25,7 +25,7 @@ services:
       context: ./services/gateway
       dockerfile: Dockerfile
     ports:
-      - "5000:80"
+      - "5000:5000"
     depends_on:
       - user-service
       - authorization-service
@@ -37,10 +37,10 @@ services:
     build:
       context: ./services/user-service
     ports:
-      - "8877:80"
+      - "8877:8877"
     depends_on:
       - mysql-db
-  
+
   authorization-service:
     container_name: authorizationService
     image: authorization-service
@@ -48,7 +48,7 @@ services:
     build:
       context: ./services/authorization-service
     ports:
-      - "8878:80"
+      - "8878:8878"
     depends_on:
       - mysql-db
 
