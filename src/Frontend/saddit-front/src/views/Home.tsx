@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import logo from "../logo.svg";
 import { Box, Container, Image } from "@chakra-ui/react";
 import { motion } from "framer-motion";
@@ -9,7 +9,12 @@ import { useAuth0 } from "@auth0/auth0-react";
 const MotionImage = motion(Image);
 
 const Home = () => {
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { user, isAuthenticated, isLoading, getAccessTokenSilently } =
+    useAuth0();
+
+  useEffect(() => {
+    getAccessTokenSilently().then((token) => console.log(token)); // TODO: add token to api calls
+  }, []);
 
   return (
     <Box w="100%">
