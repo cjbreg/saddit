@@ -3,14 +3,11 @@ import logo from "../logo.svg";
 import { Box, Image } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import styled from "@emotion/styled";
-import LogoutButton from "../components/auth/LogoutButton";
-import { useAuth0 } from "@auth0/auth0-react";
+import LoginButton from "../components/auth/LoginButton";
 
 const MotionImage = motion(Image);
 
-const Home = () => {
-  const { user, isAuthenticated, isLoading } = useAuth0();
-
+const LoginView = () => {
   return (
     <Box w="100%">
       <Box
@@ -31,16 +28,8 @@ const Home = () => {
           w="33vh"
           h="33vh"
         />
-        <LogoutButton />
-        <p>Email = {user?.email}</p>
-
-        <StyledImage
-          src={user?.picture}
-          alt="profile picture"
-          w="20"
-          h="20"
-          borderRadius={12}
-        />
+        <LoginButton />
+        <p>Login to Saddit</p>
       </Box>
     </Box>
   );
@@ -50,8 +39,4 @@ const StyledImage = styled(MotionImage)`
   overflow: hidden;
 `;
 
-const LinkText = styled.a`
-  color: #61dafb;
-`;
-
-export default Home;
+export default LoginView;
