@@ -1,6 +1,5 @@
 import React from "react";
 import logo from "../logo.svg";
-import "../App.css";
 import { Box, Image } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import styled from "@emotion/styled";
