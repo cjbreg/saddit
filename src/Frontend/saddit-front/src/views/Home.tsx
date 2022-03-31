@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "../logo.svg";
-import { Box, Image } from "@chakra-ui/react";
+import { Box, Container, Image } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import styled from "@emotion/styled";
 import LogoutButton from "../components/auth/LogoutButton";
@@ -14,14 +14,13 @@ const Home = () => {
   return (
     <Box w="100%">
       <Box
-        bg="#282c34"
+        bgGradient="linear(to-r, gray.400, gray.600)"
         minHeight="100vh"
         display="flex"
         flexDirection="column"
         alignItems="center"
         justifyContent="center"
         color="white"
-        fontSize={"calc(10px + 2vmin)"}
       >
         <StyledImage
           src={logo}
@@ -31,27 +30,32 @@ const Home = () => {
           w="33vh"
           h="33vh"
         />
-        <LogoutButton />
-        <p>Email = {user?.email}</p>
-
-        <StyledImage
-          src={user?.picture}
-          alt="profile picture"
-          w="20"
-          h="20"
+        <Container
+          bgGradient="linear(to-r, gray.600, gray.800)"
+          p={4}
           borderRadius={12}
-        />
+        >
+          <Box display="flex" flexDirection="row" pb={4}>
+            <StyledImage
+              src={user?.picture}
+              alt="profile picture"
+              w="20"
+              h="20"
+              borderRadius={12}
+            />
+            <Box p={4}>
+              <p>Name = {user?.name}</p>
+              <p>Email = {user?.email}</p>
+            </Box>
+          </Box>
+
+          <LogoutButton />
+        </Container>
       </Box>
     </Box>
   );
 };
 
-const StyledImage = styled(MotionImage)`
-  overflow: hidden;
-`;
-
-const LinkText = styled.a`
-  color: #61dafb;
-`;
+const StyledImage = styled(MotionImage)``;
 
 export default Home;
