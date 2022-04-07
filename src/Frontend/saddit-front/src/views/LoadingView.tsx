@@ -3,11 +3,10 @@ import logo from "../logo.svg";
 import { Box, Image } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import styled from "@emotion/styled";
-import LoginButton from "../components/auth/LoginButton";
 
 const MotionImage = motion(Image);
 
-const LoginView = () => {
+const LoadingView = () => {
   return (
     <Box w="100%">
       <Box
@@ -28,8 +27,6 @@ const LoginView = () => {
           w="33vh"
           h="33vh"
         />
-        <LoginButton />
-        <p>Login to Saddit</p>
       </Box>
     </Box>
   );
@@ -39,4 +36,4 @@ const StyledImage = styled(MotionImage)`
   overflow: hidden;
 `;
 
-export default LoginView;
+export default LoadingView;

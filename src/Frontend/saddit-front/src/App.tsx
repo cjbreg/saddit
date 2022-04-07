@@ -2,19 +2,14 @@ import React from "react";
 import Home from "./views/Home";
 import { Routes, Route } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import LoginView from "./views/LoginView";
+import LoadingView from "./views/LoadingView";
 
 const App = () => {
-  const { isAuthenticated } = useAuth0();
+  const { isLoading, user } = useAuth0();
 
-  const renderLoginView = () => {
-    return (
-      <Routes>
-        <Route path="/" element={<LoginView />} />
-      </Routes>
-    );
-  };
+  console.log(user);
 
+  if (isLoading) return <LoadingView />;
   const renderApp = () => {
     return (
       <Routes>
@@ -23,7 +18,7 @@ const App = () => {
     );
   };
 
-  return isAuthenticated ? renderApp() : renderLoginView();
+  return renderApp();
 };
 
 export default App;
