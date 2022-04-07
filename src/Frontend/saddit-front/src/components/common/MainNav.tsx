@@ -8,12 +8,15 @@ const MainNav = () => {
       flex={{ base: 1, md: "auto" }}
       direction={"row"}
     >
-      <Flex
-        flex={{ base: 1, md: "auto" }}
-        ml={{ base: -2 }}
-        display={{ base: "flex", md: "none" }}
-      >
-        <p>Test</p>
+      <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
+        <Text
+          textAlign={{ base: "center" }}
+          fontWeight={700}
+          color={"white"}
+          fontSize={"x-large"}
+        >
+          Saddit
+        </Text>
       </Flex>
     </Stack>
   );

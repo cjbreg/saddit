@@ -31,12 +31,13 @@ const Home = () => {
           w="33vh"
           h="33vh"
         />
-        <Container
-          bgGradient="linear(to-r, gray.600, gray.800)"
-          p={4}
-          borderRadius={12}
-        >
-          {isAuthenticated ? (
+
+        {isAuthenticated ? (
+          <Container
+            bgGradient="linear(to-r, gray.600, gray.800)"
+            p={4}
+            borderRadius={12}
+          >
             <Box display="flex" flexDirection="row" pb={4}>
               <StyledImage
                 src={user?.picture}
@@ -50,10 +51,10 @@ const Home = () => {
                 <p>Email = {user?.email}</p>
               </Box>
             </Box>
-          ) : (
-            <></>
-          )}
-        </Container>
+          </Container>
+        ) : (
+          <></>
+        )}
       </Box>
     </Box>
   );
