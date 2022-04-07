@@ -14,7 +14,7 @@ const App = () => {
   const renderApp = () => {
     return (
       <Routes>
-        <Route path="/" element={<LoginForm />} />
+        <Route path="/" element={<Home />} />
       </Routes>
     );
   };

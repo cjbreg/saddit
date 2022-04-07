@@ -13,7 +13,11 @@ import {
 } from "@chakra-ui/react";
 import { auth } from "./auth.service";
 
-const LoginForm = () => {
+type Props = {
+  closeForm(): void;
+};
+
+const LoginForm = ({ closeForm }: Props) => {
   const [showPassword, setShowPassword] = useState(false);
   const handleShowClick = () => setShowPassword(!showPassword);
 
@@ -24,16 +28,21 @@ const LoginForm = () => {
 
   const handleLogin = () => {
     auth.signInWithEmailAndPassword(email, password).then((data) => {
-      console.log(data);
+      console.log(data.user?.email); // TODO: Store userData
+      accessToken();
+      closeForm();
     });
+  };
+
+  const accessToken = async () => {
+    const token = await auth.currentUser?.getIdToken();
+    console.log(token); // TODO: Store bearer token
   };
 
   return (
     <Flex
       flexDirection="column"
-      width="100wh"
-      height="100vh"
-      backgroundColor="gray.200"
+      backgroundColor="white"
       justifyContent="center"
       alignItems="center"
     >
@@ -43,16 +52,9 @@ const LoginForm = () => {
         justifyContent="center"
         alignItems="center"
       >
-        <Avatar bg="teal.500" />
-        <Heading color="teal.400">Welcome</Heading>
-        <Box minW={{ base: "90%", md: "468px" }}>
+        <Box minW={{ base: "70%", md: "368px" }}>
           <form>
-            <Stack
-              spacing={4}
-              p="1rem"
-              backgroundColor="whiteAlpha.900"
-              boxShadow="md"
-            >
+            <Stack spacing={4} p="1rem">
               <FormControl>
                 <InputGroup>
                   <Input
