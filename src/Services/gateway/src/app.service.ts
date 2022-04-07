@@ -1,5 +1,6 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, Req } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
+import { Request } from 'express';
 
 @Injectable()
 export class AppService {
@@ -10,6 +11,10 @@ export class AppService {
   ) {}
 
   getHello(): string {
-    return 'Hello World!';
+    return 'Hello Quan!';
+  }
+
+  getTestHello(@Req() request: Request): string {
+    return 'Hello ' + request['user']?.email + '!';
   }
 }
