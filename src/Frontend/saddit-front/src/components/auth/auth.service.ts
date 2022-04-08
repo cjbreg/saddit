@@ -2,13 +2,14 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCq5Lyme0_0ZtsyUi1XmSpsO20tm71m4GE",
-  authDomain: "saddit-28a0c.firebaseapp.com",
-  projectId: "saddit-28a0c",
-  storageBucket: "saddit-28a0c.appspot.com",
-  messagingSenderId: "545100057012",
-  appId: "1:545100057012:web:60fc8b804fb521b0470ae1",
-  measurementId: "G-B7LR1CJ2M4",
+  apiKey: process.env.REACT_APP_apiKey,
+  authDomain: process.env.REACT_APP_authDomain,
+  databaseURL: process.env.REACT_APP_databaseURL,
+  projectId: process.env.REACT_APP_projectId,
+  storageBucket: process.env.REACT_APP_storageBucket,
+  messagingSenderId: process.env.REACT_APP_messagingSenderId,
+  appId: process.env.REACT_APP_appId,
+  measurementId: process.env.REACT_APP_measurementId,
 };
 
 firebase.initializeApp(firebaseConfig);
