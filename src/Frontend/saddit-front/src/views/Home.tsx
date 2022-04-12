@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../logo.svg";
 import { Box, Container, Image } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import styled from "@emotion/styled";
 import { useAuth0 } from "@auth0/auth0-react";
 import Navbar from "../components/common/Navbar";
+import { useSelector } from "react-redux";
+import { State } from "../store/reducers";
 
 const MotionImage = motion(Image);
 

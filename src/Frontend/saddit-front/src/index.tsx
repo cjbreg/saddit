@@ -13,9 +13,7 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <ChakraProvider>
-        <Auth0ProviderWithHistory>
-          <App />
-        </Auth0ProviderWithHistory>
+        <App />
       </ChakraProvider>
     </BrowserRouter>
   </Provider>,

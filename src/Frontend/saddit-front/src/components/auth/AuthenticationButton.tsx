@@ -1,13 +1,13 @@
 import React from "react";
 import LoginButton from "./LoginButton";
 import LogoutButton from "./LogoutButton";
-
-import { useAuth0 } from "@auth0/auth0-react";
+import { useSelector } from "react-redux";
+import { State } from "../../store/reducers";
 
 const AuthenticationButton = () => {
-  const { isAuthenticated } = useAuth0();
+  const { user } = useSelector((state: State) => state.auth);
 
-  return isAuthenticated ? <LogoutButton /> : <LoginButton />;
+  return user ? <LogoutButton /> : <LoginButton />;
 };
 
 export default AuthenticationButton;

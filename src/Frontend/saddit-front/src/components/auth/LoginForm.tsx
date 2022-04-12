@@ -1,23 +1,25 @@
 import React, { useState } from "react";
 import {
   Flex,
-  Heading,
   Input,
   Button,
   InputGroup,
   Stack,
   Box,
-  Avatar,
   FormControl,
   InputRightElement,
 } from "@chakra-ui/react";
 import { auth } from "./auth.service";
+import { useDispatch } from "react-redux";
+import { fetchAccessToken, signIn } from "../../store/actions";
 
 type Props = {
   closeForm(): void;
 };
 
 const LoginForm = ({ closeForm }: Props) => {
+  const dispatch = useDispatch();
+
   const [showPassword, setShowPassword] = useState(false);
   const handleShowClick = () => setShowPassword(!showPassword);
 
@@ -28,7 +30,7 @@ const LoginForm = ({ closeForm }: Props) => {
 
   const handleLogin = () => {
     auth.signInWithEmailAndPassword(email, password).then((data) => {
-      console.log(data.user?.email); // TODO: Store userData
+      dispatch(signIn({ data }));
       accessToken();
       closeForm();
     });
@@ -37,6 +39,7 @@ const LoginForm = ({ closeForm }: Props) => {
   const accessToken = async () => {
     const token = await auth.currentUser?.getIdToken();
     console.log(token); // TODO: Store bearer token
+    // dispatch(fetchAccessToken({ token }));
   };
 
   return (

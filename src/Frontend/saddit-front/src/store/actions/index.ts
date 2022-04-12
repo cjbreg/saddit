@@ -16,6 +16,9 @@ export const AUTH_RESET_FLOW = "AUTH_RESET_FLOW";
 export const AUTH_ERROR = "AUTH_ERROR";
 export const AUTH_ERROR_DISMISS = "AUTH_ERROR_DISMISS";
 
+export const FIREBASE_FETCH_ACCESS_TOKEN = "FIREBASE_FETCH_ACCESS_TOKEN";
+export const FIREBASE_FETCHED_ACCESS_TOKEN = "FIREBASE_FETCH_ACCESS_TOKEN";
+
 function action(type: string, payload = {}) {
   return { type, ...payload };
 }
@@ -29,3 +32,6 @@ export const registerUser = (payload: any) =>
 export const dismissAuthError = () => action(AUTH_ERROR_DISMISS);
 export const resetAuthFlow = () => action(AUTH_RESET_FLOW);
 export const signOut = () => action(AUTH_SIGN_OUT);
+
+export const fetchAccessToken = (payload: any) =>
+  action(FIREBASE_FETCH_ACCESS_TOKEN, { payload });

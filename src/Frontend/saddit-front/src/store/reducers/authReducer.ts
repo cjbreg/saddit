@@ -4,6 +4,8 @@ import {
   AUTH_ERROR_DISMISS,
   AUTH_SIGNED_IN,
   AUTH_SIGN_IN,
+  FIREBASE_FETCHED_ACCESS_TOKEN,
+  FIREBASE_FETCH_ACCESS_TOKEN,
   SAGA_ERROR,
 } from "../actions";
 import { produce } from "immer";
@@ -15,6 +17,7 @@ export interface AuthState {
   authState: AuthStates;
   token: string | null;
   userId: number | null;
+  user: any;
 }
 
 type Error = {
@@ -29,6 +32,7 @@ const defaultState: AuthState = {
   authState: AuthStates.LANDING,
   token: null,
   userId: null,
+  user: null,
 };
 
 const authReducer = (state = defaultState, action: AnyAction): AuthState => {
@@ -40,10 +44,15 @@ const authReducer = (state = defaultState, action: AnyAction): AuthState => {
 
     case AUTH_SIGNED_IN:
       return produce(state, (draftState) => {
+        draftState.user = action.data.user;
         draftState.loading = false;
-        draftState.token = action.data.token;
         draftState.authState = AuthStates.SIGNED_IN;
-        draftState.userId = action.data.user.id;
+        draftState.userId = action.data.user.uid;
+      });
+
+    case FIREBASE_FETCHED_ACCESS_TOKEN:
+      return produce(state, (draftState) => {
+        draftState.token = action.data;
       });
 
     case AUTH_ERROR:
