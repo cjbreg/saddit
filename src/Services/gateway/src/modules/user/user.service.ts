@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UserService {
@@ -21,6 +22,13 @@ export class UserService {
     this.userService.emit<string, CreateUserDto>(
       'user:create-user',
       registerUserDto,
+    );
+  }
+
+  putUser(updateUserDto: UpdateUserDto) {
+    this.userService.emit<string, UpdateUserDto>(
+      'user:update-user',
+      updateUserDto,
     );
   }
 }
