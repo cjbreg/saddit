@@ -1,5 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
+import { CreateUserDto } from './dto/create-user.dto';
 
 @Injectable()
 export class UserService {
@@ -13,6 +14,13 @@ export class UserService {
   }
 
   findAll() {
-    return this.userService.send<string, string>('get-all', '');
+    return this.userService.send<string, string>('user:find-all', '');
+  }
+
+  postUser(registerUserDto: CreateUserDto) {
+    this.userService.emit<string, CreateUserDto>(
+      'user:create-user',
+      registerUserDto,
+    );
   }
 }

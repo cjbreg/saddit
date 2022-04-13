@@ -1,4 +1,6 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Post } from '@nestjs/common';
+import { Payload } from '@nestjs/microservices';
+import { CreateUserDto } from './dto/create-user.dto';
 import { UserService } from './user.service';
 
 @Controller('user')
@@ -10,8 +12,13 @@ export class UserController {
     return this.userService.getHello();
   }
 
-  @Get('/get-all')
+  @Get('/')
   findAll() {
     return this.userService.findAll();
+  }
+
+  @Post('/')
+  registerUser(@Payload() registerUserDto: CreateUserDto) {
+    return this.userService.postUser(registerUserDto);
   }
 }

@@ -3,6 +3,7 @@ import {
   Column,
   PrimaryGeneratedColumn,
   CreateDateColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 
 @Entity()
@@ -19,13 +20,10 @@ export class User {
   @Column()
   uid: string;
 
-  @Column({ nullable: true })
-  lastLogin: Date;
-
   @CreateDateColumn()
   createdAt: Date;
 
-  @CreateDateColumn()
+  @UpdateDateColumn()
   updatedAt: Date;
 
   @Column({ default: true })
