@@ -9,4 +9,9 @@ export class UserController {
   getHello() {
     return this.userService.getHello();
   }
+
+  @Get('/get-all')
+  findAll() {
+    return this.userService.findAll();
+  }
 }

@@ -10,4 +10,9 @@ export class UserController {
   getHello(): string {
     return this.userService.getHello();
   }
+
+  @MessagePattern('get-all')
+  findAll() {
+    return this.userService.findAll();
+  }
 }

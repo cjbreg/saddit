@@ -11,4 +11,8 @@ export class UserService {
   getHello() {
     return this.userService.send<string, string>('get-hello-message', '');
   }
+
+  findAll() {
+    return this.userService.send<string, string>('get-all', '');
+  }
 }
