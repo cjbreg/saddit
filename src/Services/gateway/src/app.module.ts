@@ -13,6 +13,16 @@ import { AuthenticationModule, UserModule } from './modules';
 
 @Module({
   imports: [
+    ClientsModule.register([
+      {
+        name: 'USER_SERVICE',
+        transport: Transport.TCP,
+        options: {
+          // host: 'user-service',
+          port: 8877,
+        },
+      },
+    ]),
     AuthenticationModule,
     UserModule,
     ConfigModule.forRoot({ isGlobal: true }),

@@ -7,4 +7,8 @@ export class UserService {
     @Inject('USER_SERVICE')
     private readonly userService: ClientProxy,
   ) {}
+
+  getHello() {
+    return this.userService.send<string, string>('get-hello-message', '');
+  }
 }
