@@ -1,2 +1,2 @@
-CREATE DATABASE IF NOT EXISTS user
-USE user;
+CREATE DATABASE IF NOT EXISTS saddit-user
+USE saddit-user;
