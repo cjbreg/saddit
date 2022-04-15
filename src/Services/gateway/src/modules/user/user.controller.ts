@@ -13,17 +13,17 @@ export class UserController {
     return this.userService.getHello();
   }
 
-  @Get('/')
+  @Get()
   findAll() {
     return this.userService.findAll();
   }
 
-  @Post('/')
+  @Post()
   registerUser(@Payload() registerUserDto: CreateUserDto) {
     return this.userService.postUser(registerUserDto);
   }
 
-  @Put('/')
+  @Put()
   updateUser(@Payload() updateUserDto: UpdateUserDto) {
     return this.userService.putUser(updateUserDto);
   }
