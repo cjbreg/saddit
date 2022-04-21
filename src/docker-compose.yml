@@ -28,7 +28,7 @@ services:
       - "5000:5000"
     depends_on:
       - user-service
-      - authorization-service
+      # - authorization-service
 
   user-service:
     container_name: userService
@@ -41,16 +41,16 @@ services:
     depends_on:
       - mysql-db
 
-  authorization-service:
-    container_name: authorizationService
-    image: authorization-service
-    restart: always
-    build:
-      context: ./services/authorization-service
-    ports:
-      - "8878:8878"
-    depends_on:
-      - mysql-db
+  # authorization-service:
+  #   container_name: authorizationService
+  #   image: authorization-service
+  #   restart: always
+  #   build:
+  #     context: ./services/authorization-service
+  #   ports:
+  #     - "8878:8878"
+  #   depends_on:
+  #     - mysql-db
 
 volumes:
   SadditMySQLVolume:

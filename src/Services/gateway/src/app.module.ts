@@ -9,6 +9,7 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PreauthMiddleware } from './auth/preauth.middleware';
+import { AuthenticationModule, UserModule } from './modules';
 
 @Module({
   imports: [
@@ -17,21 +18,13 @@ import { PreauthMiddleware } from './auth/preauth.middleware';
         name: 'USER_SERVICE',
         transport: Transport.TCP,
         options: {
-          host: 'user-service',
-          port: 8877, // TODO: configure porst
+          // host: 'user-service',
+          port: 8877,
         },
       },
     ]),
-    ClientsModule.register([
-      {
-        name: 'AUTHORIZATION_SERVICE',
-        transport: Transport.TCP,
-        options: {
-          host: 'authorization-service',
-          port: 8878, // TODO: configure porst
-        },
-      },
-    ]),
+    AuthenticationModule,
+    UserModule,
     ConfigModule.forRoot({ isGlobal: true }),
   ],
   controllers: [AppController],

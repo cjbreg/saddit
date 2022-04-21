@@ -10,6 +10,7 @@ import SadditApiClient from "../../shared/saddit-api-client";
 import {
   AUTH_ERROR,
   AUTH_ERROR_DISMISS,
+  AUTH_REGISTER_USER,
   AUTH_SIGNED_IN,
   AUTH_SIGNED_OUT,
   AUTH_SIGN_IN,
@@ -26,6 +27,25 @@ function* watchSignIn(action: any) {
     yield put({ type: AUTH_SIGNED_IN, data: action.payload.data });
 
     yield put({ type: AUTH_ERROR_DISMISS });
+  } catch (error) {
+    yield call(handleError, error, AUTH_ERROR);
+  }
+}
+
+function* watchRegisterUser(action: any) {
+  try {
+    const email = action.payload.email;
+    const username = action.payload.username;
+    const uid = action.payload.uid;
+
+    const response: Response = yield call(
+      apiClient.user.registerUser,
+      email,
+      username,
+      uid
+    );
+
+    console.log(response);
   } catch (error) {
     yield call(handleError, error, AUTH_ERROR);
   }
@@ -57,6 +77,7 @@ export default function* authSaga(
 
   yield all([
     takeLatest(AUTH_SIGN_IN, watchSignIn),
+    takeLatest(AUTH_REGISTER_USER, watchRegisterUser),
     takeLatest(FIREBASE_FETCH_ACCESS_TOKEN, watchFetchAccessToken),
     takeLatest(AUTH_SIGN_OUT, watchSignOut),
   ]);

@@ -7,7 +7,7 @@ import authSaga from "./authSaga";
 
 export default function* root() {
   const options = {
-    baseURL: "", // TODO Added baseURl to .env
+    baseURL: "http://localhost:5000", // TODO Added baseURl to .env
     timeout: 10000,
   };
   const apiClient = new SadditApiClient(options); // TODO setup client
