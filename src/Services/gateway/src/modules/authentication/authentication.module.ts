@@ -11,7 +11,7 @@ import { AuthenticationService } from './authentication.service';
         transport: Transport.TCP,
         options: {
           host: 'authorization-service',
-          port: 8878, // TODO: configure porst
+          port: 8878,
         },
       },
     ]),

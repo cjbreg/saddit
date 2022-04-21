@@ -17,7 +17,7 @@ type Props = {
   closeForm(): void;
 };
 
-const RegisteForm = ({ closeForm }: Props) => {
+const RegisterForm = ({ closeForm }: Props) => {
   const dispatch = useDispatch();
 
   const [showPassword, setShowPassword] = useState(false);
@@ -99,4 +99,4 @@ const RegisteForm = ({ closeForm }: Props) => {
   );
 };
 
-export default RegisteForm;
+export default RegisterForm;

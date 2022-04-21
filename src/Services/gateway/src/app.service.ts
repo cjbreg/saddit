@@ -3,8 +3,6 @@ import { Request } from 'express';
 
 @Injectable()
 export class AppService {
-  constructor() {}
-
   getHello(): string {
     return 'Hello Quan!';
   }
