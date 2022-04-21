@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { auth } from "./auth.service";
 import { useDispatch } from "react-redux";
-import { fetchAccessToken, registerUser, signIn } from "../../store/actions";
+import { registerUser } from "../../store/actions";
 
 type Props = {
   closeForm(): void;
@@ -29,8 +29,6 @@ const RegisteForm = ({ closeForm }: Props) => {
   const handlePasswordChange = (event: any) => setPassword(event.target.value);
 
   const handleRegister = () => {
-    console.log("boi");
-
     auth.createUserWithEmailAndPassword(email, password).then((data) => {
       dispatch(
         registerUser({
@@ -41,12 +39,6 @@ const RegisteForm = ({ closeForm }: Props) => {
       );
       closeForm();
     });
-  };
-
-  const accessToken = async () => {
-    const token = await auth.currentUser?.getIdToken();
-    console.log(token); // TODO: Store bearer token
-    // dispatch(fetchAccessToken({ token }));
   };
 
   return (

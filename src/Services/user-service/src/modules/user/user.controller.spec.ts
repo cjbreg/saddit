@@ -39,9 +39,7 @@ describe('UserController', () => {
       const result = [];
       jest
         .spyOn(userService, 'findAll')
-        .mockImplementation(
-          () => new Promise((resolve, reject) => resolve(result)),
-        );
+        .mockImplementation(() => new Promise((resolve) => resolve(result)));
 
       expect(await userController.findAll()).toBe(result);
     });

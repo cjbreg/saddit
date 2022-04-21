@@ -10,7 +10,6 @@ import {
   useDisclosure,
   Button,
 } from "@chakra-ui/react";
-import LoginForm from "./LoginForm";
 import RegisteForm from "./RegisterForm";
 
 const RegisterButton = () => {
