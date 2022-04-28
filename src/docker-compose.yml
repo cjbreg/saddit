@@ -28,6 +28,7 @@ services:
       - "5000:5000"
     depends_on:
       - user-service
+      - post-service
       # - authorization-service
 
   user-service:
@@ -38,6 +39,17 @@ services:
       context: ./services/user-service
     ports:
       - "8877:8877"
+    depends_on:
+      - mysql-db
+
+  post-service:
+    container_name: postService
+    image: post-service
+    restart: always
+    build:
+      context: ./services/post-service
+    ports:
+      - "8879:8879"
     depends_on:
       - mysql-db
 

@@ -28,7 +28,7 @@ import { PostModule, UserModule } from './modules';
         name: 'POST_SERVICE',
         transport: Transport.TCP,
         options: {
-          // host: 'post-service',
+          host: 'post-service',
           port: 8879,
         },
       },

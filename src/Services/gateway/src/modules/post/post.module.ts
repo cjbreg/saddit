@@ -10,7 +10,7 @@ import { PostService } from './post.service';
         name: 'POST_SERVICE',
         transport: Transport.TCP,
         options: {
-          // host: 'post-service',
+          host: 'post-service',
           port: 8879,
         },
       },
