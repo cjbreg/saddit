@@ -1,6 +1,7 @@
 import { ConfigModule } from '@nestjs/config';
 import { Test } from '@nestjs/testing';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { getRepositoryToken, TypeOrmModule } from '@nestjs/typeorm';
+import { async } from 'rxjs';
 import { UserController } from './user.controller';
 import { User } from './user.entity';
 import { UserService } from './user.service';
@@ -27,11 +28,23 @@ describe('UserController', () => {
         }),
       ],
       controllers: [UserController],
-      providers: [UserService],
+      providers: [
+        UserService,
+        {
+          provide: getRepositoryToken(User),
+          useValue: {},
+        },
+      ],
     }).compile();
 
     userService = moduleRef.get<UserService>(UserService);
     userController = moduleRef.get<UserController>(UserController);
+  });
+
+  describe('Controller init', () => {
+    it('controller should be initialized', async () => {
+      expect(userController).toBeDefined();
+    });
   });
 
   describe('findAll', () => {
