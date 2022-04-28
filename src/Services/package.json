@@ -1,8 +1,0 @@
-{
-  "dependencies": {
-    "@nestjs/config": "^2.0.0",
-    "@nestjs/microservices": "^8.4.4",
-    "@nestjs/typeorm": "^8.0.3",
-    "typeorm": "^0.3.6"
-  }
-}
