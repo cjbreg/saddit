@@ -10,7 +10,8 @@ import { UserService } from './user.service';
         name: 'USER_SERVICE',
         transport: Transport.TCP,
         options: {
-          // host: 'user-service',
+          host: 'user-service',
+          // host: process.env.USER_SERVICE_HOST,
           port: 8877,
         },
       },

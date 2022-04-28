@@ -18,7 +18,7 @@ import { AuthenticationModule, UserModule } from './modules';
         name: 'USER_SERVICE',
         transport: Transport.TCP,
         options: {
-          // host: 'user-service',
+          host: 'user-service',
           port: 8877,
         },
       },
