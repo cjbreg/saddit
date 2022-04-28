@@ -14,7 +14,19 @@ export class Post {
   username: string;
 
   @Column()
-  postText: string;
+  userId: number;
+
+  @Column()
+  content: string;
+
+  @Column({ default: 0 })
+  commentsCount: number;
+
+  @Column({ default: 0 })
+  upvoteCount: number;
+
+  @Column({ default: 0 })
+  downvoteCount: number;
 
   @CreateDateColumn()
   createdAt: Date;
