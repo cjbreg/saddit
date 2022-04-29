@@ -11,7 +11,7 @@ export class PostController {
     return this.postService.getHello();
   }
 
-  @MessagePattern('user:find-all')
+  @MessagePattern('post:find-all')
   findAll() {
     return this.postService.findAll();
   }
