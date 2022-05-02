@@ -1,5 +1,6 @@
 import { Controller } from '@nestjs/common';
-import { MessagePattern } from '@nestjs/microservices';
+import { MessagePattern, Payload } from '@nestjs/microservices';
+import { CreatePostDto } from './dto/create-post.dto';
 import { PostService } from './post.service';
 
 @Controller()
@@ -14,5 +15,10 @@ export class PostController {
   @MessagePattern('post:find-all')
   findAll() {
     return this.postService.findAll();
+  }
+
+  @MessagePattern('post:create')
+  create(@Payload() createPostDto: CreatePostDto) {
+    return this.postService.create(createPostDto);
   }
 }
