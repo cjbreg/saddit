@@ -25,15 +25,17 @@ const RegisterForm = ({ closeForm }: Props) => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
   const handleEmailChange = (event: any) => setEmail(event.target.value);
   const handlePasswordChange = (event: any) => setPassword(event.target.value);
+  const handleUsernameChange = (event: any) => setUsername(event.target.value);
 
   const handleRegister = () => {
     auth.createUserWithEmailAndPassword(email, password).then((data) => {
       dispatch(
         registerUser({
           email: data.user?.email,
-          username: "testUsername",
+          username: username,
           uid: data.user?.uid,
         })
       );
@@ -57,6 +59,16 @@ const RegisterForm = ({ closeForm }: Props) => {
         <Box minW={{ base: "70%", md: "368px" }}>
           <form>
             <Stack spacing={4} p="1rem">
+              <FormControl>
+                <InputGroup>
+                  <Input
+                    value={username}
+                    type="text"
+                    placeholder="username"
+                    onChange={handleUsernameChange}
+                  />
+                </InputGroup>
+              </FormControl>
               <FormControl>
                 <InputGroup>
                   <Input

@@ -14,6 +14,7 @@ interface UserRequests {
     id: number
   ): Promise<AxiosResponse<any>>;
   fetchUsers(): Promise<AxiosResponse<any>>;
+  fetchUserByUid(uid: string): Promise<AxiosResponse<any>>;
 }
 class UserClient extends HttpService implements UserRequests {
   registerUser = (
@@ -35,6 +36,10 @@ class UserClient extends HttpService implements UserRequests {
 
   fetchUsers = (): Promise<AxiosResponse<any, any>> => {
     return this.get("user");
+  };
+
+  fetchUserByUid = (uid: string): Promise<AxiosResponse<any, any>> => {
+    return this.get(`user/uid/${uid}`);
   };
 }
 export default UserClient;
