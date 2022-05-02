@@ -29,6 +29,7 @@ services:
     depends_on:
       - user-service
       - post-service
+      - comment-service
       # - authorization-service
 
   user-service:
@@ -50,6 +51,17 @@ services:
       context: ./services/post-service
     ports:
       - "8879:8879"
+    depends_on:
+      - mysql-db
+
+  comment-service:
+    container_name: commentService
+    image: comment-service
+    restart: always
+    build:
+      context: ./services/comment-service
+    ports:
+      - "8880:8880"
     depends_on:
       - mysql-db
 
