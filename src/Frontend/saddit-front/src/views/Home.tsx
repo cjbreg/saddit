@@ -18,17 +18,17 @@ const Home = () => {
         display="flex"
         flexDirection="column"
         alignItems="center"
-        justifyContent="center"
         color="white"
+        pt={4}
       >
-        <StyledImage
+        {/* <StyledImage
           src={logo}
           alt="logo"
           animate={{ rotate: [0, 360] }}
           transition={{ duration: 20, repeat: Infinity }}
           w="33vh"
           h="33vh"
-        />
+        /> */}
         <NewPostComponent />
         <SadditFeed />
       </Box>
