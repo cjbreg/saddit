@@ -19,6 +19,12 @@ export class Post {
   @Column()
   content: string;
 
+  @Column({ default: 'all' })
+  subSadditName: string;
+
+  @Column({ default: 0 })
+  subSadditId: number;
+
   @Column({ default: 0 })
   commentsCount: number;
 

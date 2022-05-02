@@ -10,6 +10,9 @@ export class Comment {
   @IsNumber()
   userId: number;
 
+  @IsNumber()
+  postId: number;
+
   @IsString()
   content: string;
 

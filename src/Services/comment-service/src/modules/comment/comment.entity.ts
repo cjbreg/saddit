@@ -17,6 +17,9 @@ export class Comment {
   userId: number;
 
   @Column()
+  postId: number;
+
+  @Column()
   content: string;
 
   @Column({ default: 0 })

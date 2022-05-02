@@ -7,11 +7,17 @@ export class Post {
   @IsString()
   username: string;
 
-  @IsString()
-  userId: string;
+  @IsNumber()
+  userId: number;
 
   @IsString()
   content: string;
+
+  @IsString()
+  subSadditName: string;
+
+  @IsNumber()
+  subSadditId: number;
 
   @IsNumber()
   commentsCount: number;
