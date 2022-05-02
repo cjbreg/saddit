@@ -1,10 +1,12 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
+import PostClient from "./post/postClient";
 import UserClient from "./user/userClient";
 
 class SadditApiClient {
   http: AxiosInstance;
 
   user: UserClient;
+  post: PostClient;
 
   constructor(axiosConfig: AxiosRequestConfig) {
     this.http = axios.create(axiosConfig);
@@ -21,6 +23,7 @@ class SadditApiClient {
     });
 
     this.user = new UserClient(this.http);
+    this.post = new PostClient(this.http);
   }
 
   add401ResponseInterceptor(unauthorizedCallback: any): void {
