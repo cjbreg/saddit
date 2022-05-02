@@ -4,6 +4,7 @@ import { noop } from "lodash";
 import { SAGA_ERROR, UNAUTHORISED_ERROR } from "../actions";
 import SadditApiClient from "../../shared/saddit-api-client";
 import authSaga from "./authSaga";
+import postSaga from "./postSaga";
 
 export default function* root() {
   const options = {
@@ -16,7 +17,7 @@ export default function* root() {
     store.dispatch({ type: UNAUTHORISED_ERROR })
   );
 
-  const sagas = [authSaga];
+  const sagas = [authSaga, postSaga];
 
   yield all(
     sagas.map((saga) =>

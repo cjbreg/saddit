@@ -1,17 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../logo.svg";
 import { Box, Container, Image } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import styled from "@emotion/styled";
 import { useAuth0 } from "@auth0/auth0-react";
 import Navbar from "../components/common/Navbar";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { State } from "../store/reducers";
+import { fetchPosts } from "../store/actions";
 
 const MotionImage = motion(Image);
 
 const Home = () => {
-  const { user, isAuthenticated } = useAuth0();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchPosts());
+  }, []);
 
   return (
     <Box w="100%">
@@ -33,30 +37,6 @@ const Home = () => {
           w="33vh"
           h="33vh"
         />
-
-        {isAuthenticated ? (
-          <Container
-            bgGradient="linear(to-r, gray.600, gray.800)"
-            p={4}
-            borderRadius={12}
-          >
-            <Box display="flex" flexDirection="row" pb={4}>
-              <StyledImage
-                src={user?.picture}
-                alt="profile picture"
-                w="20"
-                h="20"
-                borderRadius={12}
-              />
-              <Box p={4}>
-                <p>Name = {user?.name}</p>
-                <p>Email = {user?.email}</p>
-              </Box>
-            </Box>
-          </Container>
-        ) : (
-          <></>
-        )}
       </Box>
     </Box>
   );
