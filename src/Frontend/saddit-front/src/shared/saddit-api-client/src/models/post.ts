@@ -3,7 +3,7 @@ export type Post = {
   username: string;
   userId: number;
   content: string;
-  subSaddigName: string;
+  subSadditName: string;
   subSadditId: number;
   commentsCount: number;
   upvoteCount: number;

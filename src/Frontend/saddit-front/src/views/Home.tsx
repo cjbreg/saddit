@@ -1,22 +1,14 @@
-import React, { useEffect, useState } from "react";
 import logo from "../logo.svg";
-import { Box, Container, Image } from "@chakra-ui/react";
+import { Box, Image } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import styled from "@emotion/styled";
-import { useAuth0 } from "@auth0/auth0-react";
 import Navbar from "../components/common/Navbar";
-import { useDispatch, useSelector } from "react-redux";
-import { State } from "../store/reducers";
-import { fetchPosts } from "../store/actions";
+import SadditFeed from "../components/feed/SadditFeed";
+import NewPostComponent from "../components/post/NewPostComponent";
 
 const MotionImage = motion(Image);
 
 const Home = () => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchPosts());
-  }, []);
-
   return (
     <Box w="100%">
       <Navbar />
@@ -37,6 +29,8 @@ const Home = () => {
           w="33vh"
           h="33vh"
         />
+        <NewPostComponent />
+        <SadditFeed />
       </Box>
     </Box>
   );
