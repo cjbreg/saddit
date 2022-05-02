@@ -13,6 +13,6 @@ export class CommentService {
   }
 
   findAll() {
-    return this.commentService.send<string, string>('post:find-all', '');
+    return this.commentService.send<string, string>('comment:find-all', '');
   }
 }
