@@ -17,7 +17,7 @@ export class PostController {
     return this.postService.findAll();
   }
 
-  @MessagePattern('post:create')
+  @MessagePattern('post:create-post')
   create(@Payload() createPostDto: CreatePostDto) {
     return this.postService.create(createPostDto);
   }
