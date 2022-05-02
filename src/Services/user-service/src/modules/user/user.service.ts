@@ -27,4 +27,8 @@ export class UserService {
   update(updateUserDto: UpdateUserDto) {
     return this.userRepository.save(updateUserDto);
   }
+
+  findByUid(uid: string) {
+    return this.userRepository.findOneBy({ uid });
+  }
 }
