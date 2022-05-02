@@ -1,5 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
+import { CreatePostDto } from './dto/create-post.dto';
 
 @Injectable()
 export class PostService {
@@ -14,5 +15,12 @@ export class PostService {
 
   findAll() {
     return this.postService.send<string, string>('post:find-all', '');
+  }
+
+  create(createPostDto: CreatePostDto) {
+    return this.postService.emit<string, CreatePostDto>(
+      'post:create-post',
+      createPostDto,
+    );
   }
 }
