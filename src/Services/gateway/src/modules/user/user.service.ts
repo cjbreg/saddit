@@ -33,6 +33,6 @@ export class UserService {
   }
 
   findUserByUid(uid: string) {
-    return this.userService.emit('user:find-by-uid', uid);
+    return this.userService.send('user:find-by-uid', uid);
   }
 }

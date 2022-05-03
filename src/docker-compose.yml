@@ -41,27 +41,27 @@ services:
     ports:
       - "8877:8877"
 
-  post-service:
-    container_name: postService
-    image: post-service
-    restart: always
-    build:
-      context: ./services/post-service
-    ports:
-      - "8879:8879"
-    depends_on:
-      - mysql-db
+  # post-service:
+  #   container_name: postService
+  #   image: post-service
+  #   restart: always
+  #   build:
+  #     context: ./services/post-service
+  #   ports:
+  #     - "8879:8879"
+  #   depends_on:
+  #     - mysql-db
 
-  comment-service:
-    container_name: commentService
-    image: comment-service
-    restart: always
-    build:
-      context: ./services/comment-service
-    ports:
-      - "8880:8880"
-    depends_on:
-      - mysql-db
+  # comment-service:
+  #   container_name: commentService
+  #   image: comment-service
+  #   restart: always
+  #   build:
+  #     context: ./services/comment-service
+  #   ports:
+  #     - "8880:8880"
+  #   depends_on:
+  #     - mysql-db
 
 volumes:
   my-db:

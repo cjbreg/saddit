@@ -29,6 +29,6 @@ export class UserService {
   }
 
   findByUid(uid: string) {
-    return this.userRepository.findOneBy({ uid });
+    return this.userRepository.findOneBy({ uid: uid });
   }
 }
