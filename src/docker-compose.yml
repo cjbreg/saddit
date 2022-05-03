@@ -13,7 +13,7 @@ services:
     volumes:
       - rabbitmq-data:/var/lib/rabbitmq
     env_file:
-      - ./rabbitmq.env
+      - ./docker/rabbitmq.env
 
   mysql-db:
     container_name: mysqlDb
