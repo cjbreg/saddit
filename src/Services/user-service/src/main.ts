@@ -4,10 +4,13 @@ import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.createMicroservice(AppModule, {
-    transport: Transport.TCP,
+    transport: Transport.RMQ,
     options: {
-      host: '0.0.0.0',
-      port: 8877,
+      urls: ['amqp://Coen:Password@rabbitmq:5672'],
+      queue: 'saddit-user-queue',
+      queueOptions: {
+        durable: false,
+      },
     },
   });
   app.listen();

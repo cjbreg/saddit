@@ -44,9 +44,10 @@ services:
       - post-service
       - comment-service
       - mysql-db
+      - rabbitmq
 
   user-service:
-    depends_on: ["mysql-db"]
+    depends_on: ["mysql-db", "rabbitmq"]
     container_name: userService
     image: user-service
     restart: unless-stopped
