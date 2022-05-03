@@ -9,7 +9,7 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PreauthMiddleware } from './auth/preauth.middleware';
-import { AuthenticationModule, UserModule } from './modules';
+import { PostModule, UserModule, CommentModule } from './modules';
 
 @Module({
   imports: [
@@ -23,8 +23,29 @@ import { AuthenticationModule, UserModule } from './modules';
         },
       },
     ]),
-    AuthenticationModule,
+    ClientsModule.register([
+      {
+        name: 'POST_SERVICE',
+        transport: Transport.TCP,
+        options: {
+          host: 'post-service',
+          port: 8879,
+        },
+      },
+    ]),
+    ClientsModule.register([
+      {
+        name: 'COMMENT_SERVICE',
+        transport: Transport.TCP,
+        options: {
+          host: 'comment-service',
+          port: 8880,
+        },
+      },
+    ]),
     UserModule,
+    PostModule,
+    CommentModule,
     ConfigModule.forRoot({ isGlobal: true }),
   ],
   controllers: [AppController],

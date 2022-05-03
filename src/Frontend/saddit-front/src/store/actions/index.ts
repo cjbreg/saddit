@@ -19,6 +19,18 @@ export const AUTH_ERROR_DISMISS = "AUTH_ERROR_DISMISS";
 export const FIREBASE_FETCH_ACCESS_TOKEN = "FIREBASE_FETCH_ACCESS_TOKEN";
 export const FIREBASE_FETCHED_ACCESS_TOKEN = "FIREBASE_FETCH_ACCESS_TOKEN";
 
+/**
+ * POST CONSTANTS
+ */
+
+export const POST_FETCH_ALL = "POST_FETCH_ALL";
+export const POST_FETCHED_ALL = "POST_FETCHED_ALL";
+export const POST_POST_NEW = "POST_POST_NEW";
+export const POST_POSTED_NEW = "POST_POSTED_NEW";
+
+export const POST_ERROR = "POST_ERROR";
+export const POST_ERROR_DISMISS = "POST_ERROR_DISMISS";
+
 function action(type: string, payload = {}) {
   return { type, ...payload };
 }
@@ -35,3 +47,10 @@ export const signOut = () => action(AUTH_SIGN_OUT);
 
 export const fetchAccessToken = (payload: any) =>
   action(FIREBASE_FETCH_ACCESS_TOKEN, { payload });
+
+/**
+ * POST ACTIONS
+ */
+
+export const fetchPosts = () => action(POST_FETCH_ALL);
+export const newPost = (payload: any) => action(POST_POST_NEW, { payload });

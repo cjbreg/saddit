@@ -1,18 +1,9 @@
-import React, { useState } from "react";
-import logo from "../logo.svg";
-import { Box, Container, Image } from "@chakra-ui/react";
-import { motion } from "framer-motion";
-import styled from "@emotion/styled";
-import { useAuth0 } from "@auth0/auth0-react";
+import { Box } from "@chakra-ui/react";
 import Navbar from "../components/common/Navbar";
-import { useSelector } from "react-redux";
-import { State } from "../store/reducers";
-
-const MotionImage = motion(Image);
+import SadditFeed from "../components/feed/SadditFeed";
+import NewPostComponent from "../components/post/NewPostComponent";
 
 const Home = () => {
-  const { user, isAuthenticated } = useAuth0();
-
   return (
     <Box w="100%">
       <Navbar />
@@ -22,46 +13,14 @@ const Home = () => {
         display="flex"
         flexDirection="column"
         alignItems="center"
-        justifyContent="center"
         color="white"
+        pt={4}
       >
-        <StyledImage
-          src={logo}
-          alt="logo"
-          animate={{ rotate: [0, 360] }}
-          transition={{ duration: 20, repeat: Infinity }}
-          w="33vh"
-          h="33vh"
-        />
-
-        {isAuthenticated ? (
-          <Container
-            bgGradient="linear(to-r, gray.600, gray.800)"
-            p={4}
-            borderRadius={12}
-          >
-            <Box display="flex" flexDirection="row" pb={4}>
-              <StyledImage
-                src={user?.picture}
-                alt="profile picture"
-                w="20"
-                h="20"
-                borderRadius={12}
-              />
-              <Box p={4}>
-                <p>Name = {user?.name}</p>
-                <p>Email = {user?.email}</p>
-              </Box>
-            </Box>
-          </Container>
-        ) : (
-          <></>
-        )}
+        <NewPostComponent />
+        <SadditFeed />
       </Box>
     </Box>
   );
 };
-
-const StyledImage = styled(MotionImage)``;
 
 export default Home;

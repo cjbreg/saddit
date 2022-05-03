@@ -8,14 +8,13 @@ services:
     restart: unless-stopped
     environment:
       MYSQL_HOST: localhost
-      MYSQL_DATABASE: test
       MYSQL_ROOT_PASSWORD: root123
     ports:
       - '3306:3306'
     expose:
       - '3306'
     volumes:
-      - ./docker:/docker-entrypoint-initdb.d:z
+      - ./init:/docker-entrypoint-initdb.d
 
   gateway:
     container_name: gateway
@@ -28,30 +27,42 @@ services:
       - "5000:5000"
     depends_on:
       - user-service
-      # - authorization-service
+      - post-service
+      - comment-service
+      - mysql-db
 
   user-service:
+    depends_on: ["mysql-db"]
     container_name: userService
     image: user-service
-    restart: always
+    restart: unless-stopped
     build:
       context: ./services/user-service
     ports:
       - "8877:8877"
-    depends_on:
-      - mysql-db
 
-  # authorization-service:
-  #   container_name: authorizationService
-  #   image: authorization-service
+  # post-service:
+  #   container_name: postService
+  #   image: post-service
   #   restart: always
   #   build:
-  #     context: ./services/authorization-service
+  #     context: ./services/post-service
   #   ports:
-  #     - "8878:8878"
+  #     - "8879:8879"
+  #   depends_on:
+  #     - mysql-db
+
+  # comment-service:
+  #   container_name: commentService
+  #   image: comment-service
+  #   restart: always
+  #   build:
+  #     context: ./services/comment-service
+  #   ports:
+  #     - "8880:8880"
   #   depends_on:
   #     - mysql-db
 
 volumes:
-  SadditMySQLVolume:
+  my-db:
     driver: local

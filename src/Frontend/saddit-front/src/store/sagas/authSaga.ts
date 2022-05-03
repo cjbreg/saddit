@@ -18,13 +18,22 @@ import {
   FIREBASE_FETCHED_ACCESS_TOKEN,
   FIREBASE_FETCH_ACCESS_TOKEN,
 } from "../actions";
-import { handleError } from "./";
+import { handleError, Response } from "./";
 
 let apiClient: SadditApiClient;
 
 function* watchSignIn(action: any) {
   try {
-    yield put({ type: AUTH_SIGNED_IN, data: action.payload.data });
+    const response: Response = yield call(
+      apiClient.user.fetchUserByUid,
+      action.payload.data.user.uid
+    );
+
+    yield put({
+      type: AUTH_SIGNED_IN,
+      dbData: response.data,
+      data: action.payload.data,
+    });
 
     yield put({ type: AUTH_ERROR_DISMISS });
   } catch (error) {

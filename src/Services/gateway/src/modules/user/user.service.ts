@@ -31,4 +31,8 @@ export class UserService {
       updateUserDto,
     );
   }
+
+  findUserByUid(uid: string) {
+    return this.userService.send('user:find-by-uid', uid);
+  }
 }
