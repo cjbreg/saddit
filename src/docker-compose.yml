@@ -1,6 +1,20 @@
 version: "3.9"
 
 services:
+  rabbitmq:
+    container_name: rabbitmq
+    image: "rabbitmq:3-management"
+    hostname: rabbitmq
+    labels:
+      NAME: "rabbitmq"
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+    env_file:
+      - ./rabbitmq.env
+
   mysql-db:
     container_name: mysqlDb
     image: mysql
@@ -65,4 +79,6 @@ services:
 
 volumes:
   my-db:
+    driver: local
+  rabbitmq-data:
     driver: local
