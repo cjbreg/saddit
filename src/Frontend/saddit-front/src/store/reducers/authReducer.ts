@@ -18,6 +18,7 @@ export interface AuthState {
   token: string | null;
   userId: number | null;
   user: any;
+  username: string | null;
 }
 
 type Error = {
@@ -33,6 +34,7 @@ const defaultState: AuthState = {
   token: null,
   userId: null,
   user: null,
+  username: null,
 };
 
 const authReducer = (state = defaultState, action: AnyAction): AuthState => {
@@ -48,6 +50,10 @@ const authReducer = (state = defaultState, action: AnyAction): AuthState => {
         draftState.loading = false;
         draftState.authState = AuthStates.SIGNED_IN;
         draftState.userId = action.data.user.uid;
+        console.log(action);
+        console.log(action.dbData);
+
+        draftState.username = action.dbData.username;
       });
 
     case FIREBASE_FETCHED_ACCESS_TOKEN:

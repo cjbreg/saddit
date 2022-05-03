@@ -31,7 +31,7 @@ function* watchSignIn(action: any) {
 
     yield put({
       type: AUTH_SIGNED_IN,
-      dbDdata: response.data,
+      dbData: response.data,
       data: action.payload.data,
     });
 

@@ -8,14 +8,14 @@ import AuthenticationButton from "../auth/AuthenticationButton";
 const NewPostComponent = () => {
   const dispatch = useDispatch();
 
-  const { user } = useSelector((state: State) => state.auth);
+  const { user, username } = useSelector((state: State) => state.auth);
 
   const [content, setContent] = useState("");
 
   const handleContentChange = (event: any) => setContent(event.target.value);
 
   const handleSubmitNewPost = () => {
-    dispatch(newPost({ username: "makker", userId: 1, content }));
+    dispatch(newPost({ username, userId: 1, content }));
   };
 
   const hasNoContent = () => {
@@ -32,7 +32,7 @@ const NewPostComponent = () => {
         backgroundColor={"gray.700"}
         mb={2}
       >
-        <Text>New post as {user.username ?? "login"}</Text>
+        <Text mb={2}>New post as {username ?? "login"}</Text>
 
         <Textarea
           placeholder="Your post here"
