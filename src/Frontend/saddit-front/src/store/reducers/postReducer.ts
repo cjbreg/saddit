@@ -29,7 +29,7 @@ const defaultState: PostState = {
   posts: [],
 };
 
-const postReducer = (state = defaultState, action: AnyAction): PostState => {
+const postReducer = (action: AnyAction, state = defaultState): PostState => {
   switch (action.type) {
     case POST_FETCH_ALL:
       return produce(state, (draftState) => {
