@@ -15,6 +15,10 @@ class PostClient extends HttpService implements PostRequest {
     return this.get("post/new");
   };
 
+  fetchSubSadditPosts = (subName: string): Promise<AxiosResponse<any, any>> => {
+    return this.get(`post/subsaddit/${subName}`);
+  };
+
   submitPost = (
     username: string,
     userId: number,
