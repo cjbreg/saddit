@@ -1,4 +1,4 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Controller, Get, Param, Post } from '@nestjs/common';
 import { Payload } from '@nestjs/microservices';
 import { CreatePostDto } from './dto/create-post.dto';
 import { PostService } from './post.service';
@@ -25,5 +25,10 @@ export class PostController {
   @Get('/new')
   findAllInOrder() {
     return this.postService.findAllInOrder();
+  }
+
+  @Get('/subsaddit/:subname')
+  findAllFromSub(@Param('subname') subname: string) {
+    return this.postService.findAllFromSub(subname);
   }
 }

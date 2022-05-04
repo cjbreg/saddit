@@ -27,4 +27,11 @@ export class PostService {
   findAllInOrder() {
     return this.postService.send<string, string>('post:find-all-in-order', '');
   }
+
+  findAllFromSub(subname: string) {
+    return this.postService.send<string, string>(
+      'post:find-all-from-sub',
+      subname,
+    );
+  }
 }
