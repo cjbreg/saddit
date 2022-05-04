@@ -1,5 +1,6 @@
 import { Badge, Box, Flex, Text } from "@chakra-ui/react";
 import React from "react";
+import { Link } from "react-router-dom";
 import { Post } from "../../shared/saddit-api-client";
 
 type Props = {
@@ -13,7 +14,7 @@ const PostComponent = (props: Props) => {
     <Box p="4" maxW="500px" borderRadius={8} backgroundColor={"gray.800"}>
       <Flex align="baseline" mb={2}>
         <Badge colorScheme="green" mr={2}>
-          s/{post.subSadditName}
+          <Link to={"/s/" + post.subSadditName}>s/{post.subSadditName}</Link>
         </Badge>
         <Text>{post.username}</Text>
       </Flex>

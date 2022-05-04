@@ -16,7 +16,7 @@ const Home = () => {
         color="white"
         pt={4}
       >
-        <NewPostComponent />
+        <NewPostComponent subSadditName="all" />
         <SadditFeed />
       </Box>
     </Box>

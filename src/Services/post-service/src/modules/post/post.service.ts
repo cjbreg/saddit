@@ -22,4 +22,15 @@ export class PostService {
   create(createPostDto: CreatePostDto) {
     return this.postRepository.save(createPostDto);
   }
+
+  findAllInOrder(): Promise<Post[]> {
+    return this.postRepository.find({ order: { createdAt: 'DESC' } });
+  }
+
+  findAllFromSub(subname: string): Promise<Post[]> {
+    return this.postRepository.find({
+      where: { subSadditName: subname },
+      order: { createdAt: 'DESC' },
+    });
+  }
 }

@@ -6,21 +6,27 @@ interface PostRequest {
   submitPost(
     username: string,
     userId: number,
-    content: string
+    content: string,
+    subSadditName: string
   ): Promise<AxiosResponse<any>>;
 }
 
 class PostClient extends HttpService implements PostRequest {
   fetchPosts = (): Promise<AxiosResponse<any, any>> => {
-    return this.get("post");
+    return this.get("post/new");
+  };
+
+  fetchSubSadditPosts = (subName: string): Promise<AxiosResponse<any, any>> => {
+    return this.get(`post/subsaddit/${subName}`);
   };
 
   submitPost = (
     username: string,
     userId: number,
-    content: string
+    content: string,
+    subSadditName: string
   ): Promise<AxiosResponse<any, any>> => {
-    return this.post("post", { username, userId, content });
+    return this.post("post", { username, userId, content, subSadditName });
   };
 }
 export default PostClient;
