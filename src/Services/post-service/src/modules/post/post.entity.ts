@@ -19,7 +19,7 @@ export class Post {
   @Column()
   content: string;
 
-  @Column({ default: 'all' })
+  @Column()
   subSadditName: string;
 
   @Column({ default: 0 })
