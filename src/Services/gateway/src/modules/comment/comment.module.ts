@@ -8,10 +8,13 @@ import { CommentService } from './comment.service';
     ClientsModule.register([
       {
         name: 'COMMENT_SERVICE',
-        transport: Transport.TCP,
+        transport: Transport.RMQ,
         options: {
-          host: 'comment-service',
-          port: 8880,
+          urls: ['amqp://Coen:Password@rabbitmq:5672'],
+          queue: 'saddit-comment-queue',
+          queueOptions: {
+            durable: false,
+          },
         },
       },
     ]),

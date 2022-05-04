@@ -1,6 +1,20 @@
 version: "3.9"
 
 services:
+  rabbitmq:
+    container_name: rabbitmq
+    image: "rabbitmq:3-management"
+    hostname: rabbitmq
+    labels:
+      NAME: "rabbitmq"
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+    env_file:
+      - ./docker/rabbitmq.env
+
   mysql-db:
     container_name: mysqlDb
     image: mysql
@@ -30,9 +44,9 @@ services:
       - post-service
       - comment-service
       - mysql-db
+      - rabbitmq
 
   user-service:
-    depends_on: ["mysql-db"]
     container_name: userService
     image: user-service
     restart: unless-stopped
@@ -40,29 +54,36 @@ services:
       context: ./services/user-service
     ports:
       - "8877:8877"
+    depends_on:
+      - mysql-db
+      - rabbitmq
 
-  # post-service:
-  #   container_name: postService
-  #   image: post-service
-  #   restart: always
-  #   build:
-  #     context: ./services/post-service
-  #   ports:
-  #     - "8879:8879"
-  #   depends_on:
-  #     - mysql-db
+  post-service:
+    container_name: postService
+    image: post-service
+    restart: unless-stopped
+    build:
+      context: ./services/post-service
+    ports:
+      - "8879:8879"
+    depends_on:
+      - mysql-db
+      - rabbitmq
 
-  # comment-service:
-  #   container_name: commentService
-  #   image: comment-service
-  #   restart: always
-  #   build:
-  #     context: ./services/comment-service
-  #   ports:
-  #     - "8880:8880"
-  #   depends_on:
-  #     - mysql-db
+  comment-service:
+    container_name: commentService
+    image: comment-service
+    restart: unless-stopped
+    build:
+      context: ./services/comment-service
+    ports:
+      - "8880:8880"
+    depends_on:
+      - mysql-db
+      - rabbitmq
 
 volumes:
   my-db:
+    driver: local
+  rabbitmq-data:
     driver: local
