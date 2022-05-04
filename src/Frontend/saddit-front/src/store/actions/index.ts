@@ -27,6 +27,8 @@ export const POST_FETCH_ALL = "POST_FETCH_ALL";
 export const POST_FETCHED_ALL = "POST_FETCHED_ALL";
 export const POST_POST_NEW = "POST_POST_NEW";
 export const POST_POSTED_NEW = "POST_POSTED_NEW";
+export const POST_FETCH_SUB_POSTS = "POST_FETCH_SUB_POSTS";
+export const POST_FETCHED_SUB_POSTS = "POST_FETCHED_SUB_POSTS";
 
 export const POST_ERROR = "POST_ERROR";
 export const POST_ERROR_DISMISS = "POST_ERROR_DISMISS";
@@ -53,4 +55,6 @@ export const fetchAccessToken = (payload: any) =>
  */
 
 export const fetchPosts = () => action(POST_FETCH_ALL);
+export const fetchSubSadditPosts = (payload: any) =>
+  action(POST_FETCH_SUB_POSTS, { payload });
 export const newPost = (payload: any) => action(POST_POST_NEW, { payload });

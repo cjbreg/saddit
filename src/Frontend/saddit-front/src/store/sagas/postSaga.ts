@@ -11,7 +11,9 @@ import {
   POST_ERROR,
   POST_ERROR_DISMISS,
   POST_FETCHED_ALL,
+  POST_FETCHED_SUB_POSTS,
   POST_FETCH_ALL,
+  POST_FETCH_SUB_POSTS,
   POST_POSTED_NEW,
   POST_POST_NEW,
 } from "../actions";
@@ -24,6 +26,21 @@ function* watchFetchPosts() {
     const response: Response = yield call(apiClient.post.fetchPosts);
 
     yield put({ type: POST_FETCHED_ALL, data: response.data });
+
+    yield put({ type: POST_ERROR_DISMISS });
+  } catch (error) {
+    yield call(handleError, error, POST_ERROR);
+  }
+}
+
+function* wathcFethSubSadditPosts(action: any) {
+  try {
+    const response: Response = yield call(
+      apiClient.post.fetchSubSadditPosts,
+      action.payload.submitPost
+    );
+
+    yield put({ type: POST_FETCHED_SUB_POSTS, data: response.data });
 
     yield put({ type: POST_ERROR_DISMISS });
   } catch (error) {
@@ -57,6 +74,7 @@ export default function* postSaga(
 
   yield all([
     takeLatest(POST_FETCH_ALL, watchFetchPosts),
+    takeLatest(POST_FETCH_SUB_POSTS, wathcFethSubSadditPosts),
     takeLatest(POST_POST_NEW, watchSubmitNewPost),
   ]);
 }
