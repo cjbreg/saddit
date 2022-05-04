@@ -26,4 +26,9 @@ export class PostController {
   findAllInOrder() {
     return this.postService.findAllInOrder();
   }
+
+  @MessagePattern('post:find-all-from-sub')
+  findAllFromSub(@Payload() subname: string) {
+    return this.postService.findAllFromSub(subname);
+  }
 }
