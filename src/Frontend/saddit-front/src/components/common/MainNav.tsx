@@ -1,5 +1,6 @@
 import React from "react";
 import { Stack, Flex, Text } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 const MainNav = () => {
   return (
@@ -15,7 +16,7 @@ const MainNav = () => {
           color={"white"}
           fontSize={"x-large"}
         >
-          Saddit
+          <Link to="/">Saddit</Link>
         </Text>
       </Flex>
     </Stack>
