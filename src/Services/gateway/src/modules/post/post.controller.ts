@@ -21,4 +21,9 @@ export class PostController {
   create(@Payload() createPostDto: CreatePostDto) {
     return this.postService.create(createPostDto);
   }
+
+  @Get('/new')
+  findAllInOrder() {
+    return this.postService.findAllInOrder();
+  }
 }
