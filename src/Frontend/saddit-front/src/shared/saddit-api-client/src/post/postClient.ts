@@ -12,7 +12,7 @@ interface PostRequest {
 
 class PostClient extends HttpService implements PostRequest {
   fetchPosts = (): Promise<AxiosResponse<any, any>> => {
-    return this.get("post");
+    return this.get("post/new");
   };
 
   submitPost = (
