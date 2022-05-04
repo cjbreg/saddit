@@ -8,10 +8,13 @@ import { PostService } from './post.service';
     ClientsModule.register([
       {
         name: 'POST_SERVICE',
-        transport: Transport.TCP,
+        transport: Transport.RMQ,
         options: {
-          host: 'post-service',
-          port: 8879,
+          urls: ['amqp://Coen:Password@rabbitmq:5672'],
+          queue: 'saddit-post-queue',
+          queueOptions: {
+            durable: false,
+          },
         },
       },
     ]),
