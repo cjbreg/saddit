@@ -5,8 +5,13 @@ import { newPost } from "../../store/actions";
 import { State } from "../../store/reducers";
 import AuthenticationButton from "../auth/AuthenticationButton";
 
-const NewPostComponent = () => {
+type Props = {
+  subSadditName: string;
+};
+
+const NewPostComponent = (props: Props) => {
   const dispatch = useDispatch();
+  const { subSadditName } = props;
 
   const { user, username } = useSelector((state: State) => state.auth);
 
@@ -15,7 +20,7 @@ const NewPostComponent = () => {
   const handleContentChange = (event: any) => setContent(event.target.value);
 
   const handleSubmitNewPost = () => {
-    dispatch(newPost({ username, userId: 1, content }));
+    dispatch(newPost({ username, userId: 1, content, subSadditName }));
   };
 
   const hasNoContent = () => {

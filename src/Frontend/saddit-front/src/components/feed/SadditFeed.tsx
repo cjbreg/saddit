@@ -20,8 +20,8 @@ const SadditFeed = () => {
       <>
         {posts.map((post: Post, index: number) => {
           return (
-            <Box mb={1}>
-              <PostComponent post={post} key={index} />
+            <Box mb={1} key={index}>
+              <PostComponent post={post} />
             </Box>
           );
         })}

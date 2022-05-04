@@ -28,8 +28,7 @@ const SubSadditView = () => {
         color="white"
         pt={4}
       >
-        <Text>{subSadditName}</Text>
-        <NewPostComponent />
+        <NewPostComponent subSadditName={subSadditName ?? "all"} />
         <SubSadditFeed />
       </Box>
     </Box>
