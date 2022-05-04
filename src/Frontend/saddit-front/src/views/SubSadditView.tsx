@@ -1,9 +1,8 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import Navbar from "../components/common/Navbar";
-import SadditFeed from "../components/feed/SadditFeed";
 import SubSadditFeed from "../components/feed/SubSadditFeed";
 import NewPostComponent from "../components/post/NewPostComponent";
 import { fetchSubSadditPosts } from "../store/actions";
