@@ -6,7 +6,8 @@ interface PostRequest {
   submitPost(
     username: string,
     userId: number,
-    content: string
+    content: string,
+    subSadditName: string
   ): Promise<AxiosResponse<any>>;
 }
 
@@ -22,9 +23,10 @@ class PostClient extends HttpService implements PostRequest {
   submitPost = (
     username: string,
     userId: number,
-    content: string
+    content: string,
+    subSadditName: string
   ): Promise<AxiosResponse<any, any>> => {
-    return this.post("post", { username, userId, content });
+    return this.post("post", { username, userId, content, subSadditName });
   };
 }
 export default PostClient;

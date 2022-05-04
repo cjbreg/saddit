@@ -37,7 +37,7 @@ function* wathcFethSubSadditPosts(action: any) {
   try {
     const response: Response = yield call(
       apiClient.post.fetchSubSadditPosts,
-      action.payload.submitPost
+      action.payload
     );
 
     yield put({ type: POST_FETCHED_SUB_POSTS, data: response.data });
@@ -54,7 +54,8 @@ function* watchSubmitNewPost(action: any) {
       apiClient.post.submitPost,
       action.payload.username,
       action.payload.userId,
-      action.payload.content
+      action.payload.content,
+      action.payload.subSadditName
     );
 
     console.log(response);
