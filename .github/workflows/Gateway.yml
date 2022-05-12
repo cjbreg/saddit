@@ -17,7 +17,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: "./src/services/gateway"
+        working-directory: "./src/Services/gateway"
 
     strategy:
       matrix:
@@ -32,9 +32,9 @@ jobs:
           node-version: ${{matrix.node-version}}
 
       - name: Run build
-        working-directory: src/services/gateway
+        working-directory: src/Services/gateway
         run: yarn
 
       - name: Run Tests
-        working-directory: src/services/gateway
+        working-directory: src/Services/gateway
         run: yarn test
