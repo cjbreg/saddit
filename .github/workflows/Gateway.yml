@@ -9,34 +9,34 @@ on:
       - develop
       - feature/**
   pull_request:
-    types: [opened, synchronize, reopened]
+    branches: [master, develop]
 
 jobs:
   test:
     runs-on: ubuntu-latest
 
-  defaults:
-    run:
-      working-directory: "./src/gateway"
+    defaults:
+      run:
+        working-directory: "./src/services/gateway"
 
-  strategy:
-    matrix:
-      node-version: [16.x]
-      # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+    strategy:
+      matrix:
+        node-version: [16.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
-  steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{matix.node-version}}
-        cache: "yarn"
-        cache-dependency-path: ./src/services/gateway/yarn.lock
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{matix.node-version}}
+          cache: "yarn"
+          cache-dependency-path: ./src/services/gateway/yarn.lock
 
-    - name: Run build
-      working-directory: ./src/services/gateway
-      run: yarn
+      - name: Run build
+        working-directory: ./src/services/gateway
+        run: yarn
 
-    - name: Run Tests
-      working-directory: ./src/services/gateway
-      run: yarn test
+      - name: Run Tests
+        working-directory: ./src/services/gateway
+        run: yarn test
