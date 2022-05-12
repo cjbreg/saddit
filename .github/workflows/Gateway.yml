@@ -14,27 +14,29 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: "./src/services/gateway"
-    stategy:
-      matrix:
-        node-version: [16.x]
 
-    steps:
-      - uses: action/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
+  defaults:
+    run:
+      working-directory: "./src/gateway"
 
-      - uses: actions/setup-node@v3
-        with:
-          node-version: ${{matix.node-version}}
-          cache: "yarn"
-          cache-dependency-path: ./src/services/gateway/yarn.lock
+  strategy:
+    matrix:
+      node-version: [16.x]
+      # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
-      - name: Run build
-      - working-directory: ./src/services/gateway
-      - run: yarn
+  steps:
+    - uses: action/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{matix.node-version}}
+        cache: "yarn"
+        cache-dependency-path: ./src/services/gateway/yarn.lock
 
-      - name: Run Tests
-      - working-directory: ./src/services/gateway
-      - run: yarn test
+    - name: Run build
+      working-directory: ./src/services/gateway
+      run: yarn
+
+    - name: Run Tests
+      working-directory: ./src/services/gateway
+      run: yarn test
