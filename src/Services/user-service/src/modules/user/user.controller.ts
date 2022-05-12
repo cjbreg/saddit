@@ -27,4 +27,9 @@ export class UserController {
   update(@Payload() updateUserDto: UpdateUserDto) {
     return this.userService.update(updateUserDto);
   }
+
+  @MessagePattern('user:find-by-uid')
+  findByUid(@Payload() uid: string) {
+    return this.userService.findByUid(uid);
+  }
 }

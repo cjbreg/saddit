@@ -5,26 +5,16 @@ import {
   RequestMethod,
 } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { ClientsModule, Transport } from '@nestjs/microservices';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PreauthMiddleware } from './auth/preauth.middleware';
-import { AuthenticationModule, UserModule } from './modules';
+import { PostModule, UserModule, CommentModule } from './modules';
 
 @Module({
   imports: [
-    ClientsModule.register([
-      {
-        name: 'USER_SERVICE',
-        transport: Transport.TCP,
-        options: {
-          host: 'user-service',
-          port: 8877,
-        },
-      },
-    ]),
-    AuthenticationModule,
     UserModule,
+    PostModule,
+    CommentModule,
     ConfigModule.forRoot({ isGlobal: true }),
   ],
   controllers: [AppController],

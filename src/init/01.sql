@@ -1,0 +1,5 @@
+CREATE DATABASE IF NOT EXISTS `saddit-user`;
+CREATE DATABASE IF NOT EXISTS `saddit-post`;
+CREATE DATABASE IF NOT EXISTS `saddit-comment`;
+
+

@@ -8,11 +8,13 @@ import { UserService } from './user.service';
     ClientsModule.register([
       {
         name: 'USER_SERVICE',
-        transport: Transport.TCP,
+        transport: Transport.RMQ,
         options: {
-          host: 'user-service',
-          // host: process.env.USER_SERVICE_HOST,
-          port: 8877,
+          urls: ['amqp://Coen:Password@rabbitmq:5672'],
+          queue: 'saddit-user-queue',
+          queueOptions: {
+            durable: false,
+          },
         },
       },
     ]),

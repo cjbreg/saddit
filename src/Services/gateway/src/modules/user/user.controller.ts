@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Put } from '@nestjs/common';
+import { Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { Payload } from '@nestjs/microservices';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -26,5 +26,10 @@ export class UserController {
   @Put()
   updateUser(@Payload() updateUserDto: UpdateUserDto) {
     return this.userService.putUser(updateUserDto);
+  }
+
+  @Get('uid/:uid')
+  findUserByUid(@Param('uid') uid: string) {
+    return this.userService.findUserByUid(uid)
   }
 }

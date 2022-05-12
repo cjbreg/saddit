@@ -1,6 +1,20 @@
 version: "3.9"
 
 services:
+  rabbitmq:
+    container_name: rabbitmq
+    image: "rabbitmq:3-management"
+    hostname: rabbitmq
+    labels:
+      NAME: "rabbitmq"
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+    env_file:
+      - ./docker/rabbitmq.env
+
   mysql-db:
     container_name: mysqlDb
     image: mysql
@@ -8,14 +22,13 @@ services:
     restart: unless-stopped
     environment:
       MYSQL_HOST: localhost
-      MYSQL_DATABASE: test
       MYSQL_ROOT_PASSWORD: root123
     ports:
       - '3306:3306'
     expose:
       - '3306'
     volumes:
-      - ./docker:/docker-entrypoint-initdb.d:z
+      - ./init:/docker-entrypoint-initdb.d
 
   gateway:
     container_name: gateway
@@ -28,30 +41,49 @@ services:
       - "5000:5000"
     depends_on:
       - user-service
-      # - authorization-service
+      - post-service
+      - comment-service
+      - mysql-db
+      - rabbitmq
 
   user-service:
     container_name: userService
     image: user-service
-    restart: always
+    restart: unless-stopped
     build:
       context: ./services/user-service
     ports:
       - "8877:8877"
     depends_on:
       - mysql-db
+      - rabbitmq
 
-  # authorization-service:
-  #   container_name: authorizationService
-  #   image: authorization-service
-  #   restart: always
-  #   build:
-  #     context: ./services/authorization-service
-  #   ports:
-  #     - "8878:8878"
-  #   depends_on:
-  #     - mysql-db
+  post-service:
+    container_name: postService
+    image: post-service
+    restart: unless-stopped
+    build:
+      context: ./services/post-service
+    ports:
+      - "8879:8879"
+    depends_on:
+      - mysql-db
+      - rabbitmq
+
+  comment-service:
+    container_name: commentService
+    image: comment-service
+    restart: unless-stopped
+    build:
+      context: ./services/comment-service
+    ports:
+      - "8880:8880"
+    depends_on:
+      - mysql-db
+      - rabbitmq
 
 volumes:
-  SadditMySQLVolume:
+  my-db:
+    driver: local
+  rabbitmq-data:
     driver: local
