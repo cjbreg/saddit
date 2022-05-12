@@ -8,6 +8,6 @@ export class AppService {
   }
 
   getTestHello(@Req() request: Request): string {
-    return 'Hello ' + request['user']?.email + '!';
+    return 'Helloo ' + request['user']?.email + '!';
   }
 }
