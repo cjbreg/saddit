@@ -8,13 +8,17 @@ import { PostService } from './post.service';
     ClientsModule.register([
       {
         name: 'POST_SERVICE',
-        transport: Transport.RMQ,
+        // transport: Transport.RMQ,
+        // options: {
+        //   urls: ['amqp://Coen:Password@rabbitmq:5672'],
+        //   queue: 'saddit-post-queue',
+        //   queueOptions: {
+        //     durable: false,
+        //   },
+        // },
+        transport: Transport.TCP,
         options: {
-          urls: ['amqp://Coen:Password@rabbitmq:5672'],
-          queue: 'saddit-post-queue',
-          queueOptions: {
-            durable: false,
-          },
+          port: 5002,
         },
       },
     ]),
