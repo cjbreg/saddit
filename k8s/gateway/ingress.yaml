@@ -6,10 +6,10 @@ spec:
   rules:
     - http:
         paths:
-          - path: /hello
+          - path: /user
             pathType: Prefix
             backend:
               service:
-                name: hello-service
+                name: gateway-service
                 port:
                   number: 80
