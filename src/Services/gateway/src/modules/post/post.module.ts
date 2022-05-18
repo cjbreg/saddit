@@ -18,6 +18,7 @@ import { PostService } from './post.service';
         // },
         transport: Transport.TCP,
         options: {
+          host: process.env.host_user_service,
           port: 5002,
         },
       },

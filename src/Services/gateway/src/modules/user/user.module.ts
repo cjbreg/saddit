@@ -18,6 +18,7 @@ import { UserService } from './user.service';
         // },
         transport: Transport.TCP,
         options: {
+          host: process.env.host_user_service,
           port: 5001,
         },
       },
