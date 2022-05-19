@@ -25,4 +25,4 @@ jobs:
         with:
           context: ./src/Services/gateway
           push: true
-          tags: node-test:$(date +%s)
+          tags: v0.1
