@@ -28,5 +28,5 @@ kubectl get deployment
 ## Access database
 Command to access the mysql container
 ```bash
-kubectl run -it --rm --image=mysql:5.6 --restart=Never mysql-client -- mysql -h mysql --password <password>
+kubectl run -it --rm --image=mysql:8.0 --restart=Never mysql-client -- mysql -h mysql --password="<password>"
 ```
