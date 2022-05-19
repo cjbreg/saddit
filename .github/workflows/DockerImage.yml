@@ -7,7 +7,7 @@ on:
     branches: [docker]
 
 jobs:
-  test:
+  build_and_test:
     runs-on: ubuntu-latest
 
     defaults:
@@ -35,7 +35,7 @@ jobs:
         run: yarn test
 
   push_to_registry:
-    needs: test
+    needs: build_and_test
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
     steps:
