@@ -14,6 +14,7 @@ async function bootstrap() {
     // },
     transport: Transport.TCP,
     options: {
+      host: 'user-service',
       port: 5001,
     },
   });
