@@ -16,7 +16,6 @@ async function bootstrap() {
       // },
       transport: Transport.TCP,
       options: {
-        host: 'comment-service',
         port: 5003,
       },
     },
