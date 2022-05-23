@@ -13,3 +13,17 @@ spec:
                 name: gateway-service
                 port:
                   number: 80
+          - path: /commment
+            pathType: Prefix
+            backend:
+              service:
+                name: gateway-service
+                port:
+                  number: 80
+          - path: /post
+            pathType: Prefix
+            backend:
+              service:
+                name: gateway-service
+                port:
+                  number: 80
