@@ -18,24 +18,24 @@ import { PostModule, UserModule, CommentModule } from './modules';
         name: 'user-service',
         transport: Transport.TCP,
         options: {
-          host: 'user-service',
-          port: 5001,
+          host: String(process.env.host_user_service),
+          port: parseInt(process.env.port_user_service),
         },
       },
       {
         name: 'post-service',
         transport: Transport.TCP,
         options: {
-          host: 'post-service',
-          port: 5002,
+          host: String(process.env.host_post_service),
+          port: parseInt(process.env.port_post_service),
         },
       },
       {
         name: 'commment-service',
         transport: Transport.TCP,
         options: {
-          host: 'comment-service',
-          port: 5003,
+          host: String(process.env.host_comment_service),
+          port: parseInt(process.env.port_comment_service),
         },
       },
     ]),
