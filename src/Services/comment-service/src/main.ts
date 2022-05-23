@@ -6,13 +6,18 @@ async function bootstrap() {
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
     AppModule,
     {
-      transport: Transport.RMQ,
+      // transport: Transport.RMQ,
+      // options: {
+      //   urls: ['amqp://Coen:Password@rabbitmq:5672'],
+      //   queue: 'saddit-comment-queue',
+      //   queueOptions: {
+      //     durable: false,
+      //   },
+      // },
+      transport: Transport.TCP,
       options: {
-        urls: ['amqp://Coen:Password@rabbitmq:5672'],
-        queue: 'saddit-comment-queue',
-        queueOptions: {
-          durable: false,
-        },
+        host: '0.0.0.0',
+        port: 5003,
       },
     },
   );

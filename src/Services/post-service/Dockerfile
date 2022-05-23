@@ -1,11 +1,32 @@
-FROM node:14-alpine
+FROM node:16-alpine as base
 
-COPY package.json yarn.lock ./
+WORKDIR /usr/src/app
 
-RUN yarn
+COPY package*.json ./
+
+RUN yarn --development
 
 COPY . .
 
-RUN yarn build
+FROM base as dev
+CMD ["yarn", "start:dev"]
 
-CMD ["yarn", "start:prod"]
+FROM base as builder
+RUN npm run build
+
+FROM node:16-alpine as prod
+
+ARG NODE_ENV=production
+ENV NODE_ENV=${NODE_ENV}
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN yarn --production
+
+COPY . .
+
+COPY --from=builder /usr/src/app/dist ./dist
+
+CMD ["node", "dist/main"]
