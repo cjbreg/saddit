@@ -16,7 +16,7 @@ kubectl apply -f mysql-pvc.yaml
 ## Deployment
 Deploy to the kubernetes cluster with the following command
 ```bash
-kubectl apply -f mysql-deployment.yml
+kubectl apply -f mysql-deployment.yaml
 ```
 
 ## Check deployment status
@@ -29,4 +29,6 @@ kubectl get deployment
 Command to access the mysql container
 ```bash
 kubectl run -it --rm --image=mysql:8.0 --restart=Never mysql-client -- mysql -h mysql --password="<password>"
+kubectl run -it --rm --image=mysql:8.0 --restart=Never mysql-client -- mysql -h mysql -p <password>
+
 ```
