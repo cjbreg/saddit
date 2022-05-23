@@ -7,5 +7,4 @@ spec:
     app: comment-service
   ports:
     - protocol: TCP
-      port: 80
-      targetPort: 5003
+      port: 5003
