@@ -27,3 +27,10 @@ spec:
                 name: gateway-service
                 port:
                   number: 80
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: gateway-service
+                port:
+                  number: 80
