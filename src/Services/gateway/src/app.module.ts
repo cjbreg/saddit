@@ -26,7 +26,7 @@ import { PostModule, UserModule, CommentModule } from './modules';
         name: 'post-service',
         transport: Transport.TCP,
         options: {
-          host: process.env.host_post_service,
+          host: 'post-service',
           port: 5002,
         },
       },
@@ -34,7 +34,7 @@ import { PostModule, UserModule, CommentModule } from './modules';
         name: 'commment-service',
         transport: Transport.TCP,
         options: {
-          host: process.env.host_comment_service,
+          host: 'comment-service',
           port: 5003,
         },
       },

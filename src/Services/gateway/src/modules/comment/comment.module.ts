@@ -18,7 +18,7 @@ import { CommentService } from './comment.service';
         // },
         transport: Transport.TCP,
         options: {
-          host: process.env.host_user_service,
+          host: 'comment-service',
           port: 5003,
         },
       },
