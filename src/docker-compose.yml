@@ -82,6 +82,15 @@ services:
       - mysql-db
       - rabbitmq
 
+  frontend:
+    depends_on: ["gateway"]
+    image: frontend
+    restart: unless-stopped
+    build:
+      context: ./frontend/saddit-front
+    ports:
+      - "3000:3000"
+
 volumes:
   my-db:
     driver: local
