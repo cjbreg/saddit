@@ -8,7 +8,7 @@ import postSaga from "./postSaga";
 
 export default function* root() {
   const options = {
-    baseURL: "http://localhost:5000", // TODO Added baseURl to .env
+    baseURL: String(process.env.REACT_APP_API_URL), // TODO Added baseURl to .env
     timeout: 10000,
   };
   const apiClient = new SadditApiClient(options); // TODO setup client
