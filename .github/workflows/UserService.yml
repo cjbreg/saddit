@@ -1,4 +1,4 @@
-name: UserService CI - Tests
+name: UserService CI
 
 on:
   push:

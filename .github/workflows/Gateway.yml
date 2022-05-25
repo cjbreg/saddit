@@ -1,4 +1,4 @@
-name: Gateway CI - Tests
+name: Gateway CI
 
 on:
   push:

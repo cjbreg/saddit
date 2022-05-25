@@ -1,4 +1,4 @@
-name: CommentService CI - Tests
+name: CommentService CI
 
 on:
   push:

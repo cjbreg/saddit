@@ -1,4 +1,4 @@
-name: PostService CI - Tests
+name: PostService CI
 
 on:
   push:
