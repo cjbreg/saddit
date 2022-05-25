@@ -3,10 +3,10 @@ name: Gateway CI
 on:
   push:
     paths:
-      - "./src/Services/gateway/**"
+      - "src/Services/gateway/**"
     branches:
-      - master
       - develop
+      - master
       - feature/**
   pull_request:
     branches: [master]
