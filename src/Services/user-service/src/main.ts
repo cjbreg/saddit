@@ -6,16 +6,16 @@ async function bootstrap() {
   const app = await NestFactory.createMicroservice(AppModule, {
     // transport: Transport.RMQ,
     // options: {
-    //   urls: ['amqp://Coen:Password@rabbitmq:5672'],
-    //   queue: 'saddit-user-queue',
+    //   urls: [String(process.env.rabbitmq_url)],
+    //   queue: String(process.env.rabbitmq_queue),
     //   queueOptions: {
     //     durable: false,
     //   },
     // },
     transport: Transport.TCP,
     options: {
-      host: '0.0.0.0',
-      port: 5001,
+      host: String(process.env.service_host),
+      port: parseInt(process.env.service_port),
     },
   });
   app.listen();
