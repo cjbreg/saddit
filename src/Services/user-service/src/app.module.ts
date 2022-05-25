@@ -11,7 +11,7 @@ import { User } from './modules/user/user.entity';
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: process.env.mysql_host,
-      port: 3306,
+      port: parseInt(process.env.mysql_port),
       username: process.env.mysql_username,
       password: process.env.mysql_password,
       database: process.env.mysql_database,
