@@ -3,7 +3,7 @@ name: CommentService CI
 on:
   push:
     paths:
-      - "src/servcies/comment-service/**"
+      - "src/Services/comment-service/**"
     branches:
       - master
       - develop

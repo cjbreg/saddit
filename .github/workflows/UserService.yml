@@ -3,7 +3,7 @@ name: UserService CI
 on:
   push:
     paths:
-      - "src/servcies/user-service/**"
+      - "src/Services/user-service/**"
     branches:
       - master
       - develop
