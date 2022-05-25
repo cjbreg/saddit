@@ -10,16 +10,16 @@ import { CommentService } from './comment.service';
         name: 'COMMENT_SERVICE',
         // transport: Transport.RMQ,
         // options: {
-        //   urls: ['amqp://Coen:Password@rabbitmq:5672'],
-        //   queue: 'saddit-comment-queue',
+        //   urls: [String(process.env.rabbitmq_url)],
+        //   queue: String(process.env.rabbitmq_queue_comment),
         //   queueOptions: {
         //     durable: false,
         //   },
         // },
         transport: Transport.TCP,
         options: {
-          host: 'comment-service',
-          port: 5003,
+          host: String(process.env.host_comment_service),
+          port: parseInt(process.env.port_comment_service),
         },
       },
     ]),

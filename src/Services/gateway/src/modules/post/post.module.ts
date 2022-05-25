@@ -10,16 +10,16 @@ import { PostService } from './post.service';
         name: 'POST_SERVICE',
         // transport: Transport.RMQ,
         // options: {
-        //   urls: ['amqp://Coen:Password@rabbitmq:5672'],
-        //   queue: 'saddit-post-queue',
+        //   urls: [String(process.env.rabbitmq_url)],
+        //   queue: String(process.env.rabbitmq_queue_post),
         //   queueOptions: {
         //     durable: false,
         //   },
         // },
         transport: Transport.TCP,
         options: {
-          host: 'post-service',
-          port: 5002,
+          host: String(process.env.host_post_service),
+          port: parseInt(process.env.port_post_service),
         },
       },
     ]),

@@ -10,16 +10,16 @@ import { UserService } from './user.service';
         name: 'USER_SERVICE',
         // transport: Transport.RMQ,
         // options: {
-        //   urls: ['amqp://Coen:Password@rabbitmq:5672'],
-        //   queue: 'saddit-user-queue',
+        //   urls: [String(process.env.rabbitmq_url)],
+        //   queue: String(process.env.rabbitmq_queue_user),
         //   queueOptions: {
         //     durable: false,
         //   },
         // },
         transport: Transport.TCP,
         options: {
-          host: 'user-service',
-          port: 5001,
+          host: String(process.env.host_user_service),
+          port: parseInt(process.env.port_user_service),
         },
       },
     ]),
