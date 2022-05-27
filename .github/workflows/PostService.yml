@@ -3,13 +3,13 @@ name: PostService CI
 on:
   push:
     paths:
-      - "src/servcies/post-service/**"
+      - "src/Services/post-service/**"
     branches:
       - master
       - develop
       - feature/**
   pull_request:
-    branches: [master, develop]
+    branches: [master]
 
 jobs:
   build_and_test:

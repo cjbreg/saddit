@@ -3,13 +3,13 @@ name: UserService CI
 on:
   push:
     paths:
-      - "src/servcies/user-service/**"
+      - "src/Services/user-service/**"
     branches:
       - master
       - develop
       - feature/**
   pull_request:
-    branches: [master, develop]
+    branches: [master]
 
 jobs:
   build_and_test:
