@@ -3,7 +3,9 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
-.env
+# src/Frontend/**/.env
+src/Services/**/.env
+k8s/**/.env
 
 # User-specific files
 *.rsuser
