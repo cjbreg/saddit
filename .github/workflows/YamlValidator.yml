@@ -12,9 +12,11 @@ on:
     branches: [master]
 
 jobs:
-  yamllint:
+  yaml_lint:
     name: "Yamllint"
+
     runs-on: ubuntu-latest
+
     steps:
       - name: "Checkout"
         uses: actions/checkout@master
