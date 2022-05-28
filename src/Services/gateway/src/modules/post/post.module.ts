@@ -10,18 +10,13 @@ import { PostService } from './post.service';
     ClientsModule.register([
       {
         name: 'POST_SERVICE',
-        // transport: Transport.RMQ,
-        // options: {
-        //   urls: [String(process.env.rabbitmq_url)],
-        //   queue: String(process.env.rabbitmq_queue_post),
-        //   queueOptions: {
-        //     durable: false,
-        //   },
-        // },
-        transport: Transport.TCP,
+        transport: Transport.RMQ,
         options: {
-          host: String(process.env.host_post_service),
-          port: parseInt(process.env.port_post_service),
+          urls: [String(process.env.rabbitmq_url)],
+          queue: String(process.env.rabbitmq_queue_post),
+          queueOptions: {
+            durable: false,
+          },
         },
       },
     ]),
