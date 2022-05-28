@@ -37,7 +37,7 @@ jobs:
 
       - name: Run Tests
         working-directory: src/Services/post-service
-        run: yarn test
+        run: yarn test:cov
 
   push_to_registry:
     needs: build_and_test
