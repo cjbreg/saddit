@@ -10,19 +10,19 @@ import { UserService } from './user.service';
     ClientsModule.register([
       {
         name: 'USER_SERVICE',
-        // transport: Transport.RMQ,
-        // options: {
-        //   urls: [String(process.env.rabbitmq_url)],
-        //   queue: String(process.env.rabbitmq_queue_user),
-        //   queueOptions: {
-        //     durable: false,
-        //   },
-        // },
-        transport: Transport.TCP,
+        transport: Transport.RMQ,
         options: {
-          host: String(process.env.host_user_service),
-          port: parseInt(process.env.port_user_service),
+          urls: [String(process.env.rabbitmq_url)],
+          queue: String(process.env.rabbitmq_queue_user),
+          queueOptions: {
+            durable: false,
+          },
         },
+        // transport: Transport.TCP,
+        // options: {
+        //   host: String(process.env.host_user_service),
+        //   port: parseInt(process.env.port_user_service),
+        // },
       },
     ]),
   ],
