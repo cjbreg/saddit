@@ -1,3 +1,4 @@
+---
 mirrors:
   "localhost:5000":
     endpoint:

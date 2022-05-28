@@ -13,7 +13,7 @@ on:
 
 jobs:
   yaml_lint:
-    name: "Yamllint"
+    name: "Yaml-validator"
 
     runs-on: ubuntu-latest
 
@@ -23,6 +23,6 @@ jobs:
       - name: "Yamllint"
         uses: karancode/yamllint-github-action@master
         with:
-          yamllint_file_or_dir: "k8s/**/*.yaml"
+          yamllint_file_or_dir: "k8s/*.yaml"
           yamllint_strict: false
           yamllint_comment: true
