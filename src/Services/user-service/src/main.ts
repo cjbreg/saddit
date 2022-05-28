@@ -12,11 +12,6 @@ async function bootstrap() {
         durable: false,
       },
     },
-    // transport: Transport.TCP,
-    // options: {
-    //   host: String(process.env.service_host),
-    //   port: parseInt(process.env.service_port),
-    // },
   });
   app.listen();
 }
