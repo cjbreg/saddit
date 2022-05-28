@@ -17,6 +17,14 @@ spec:
       containers:
         - name: user-service
           image: localhost:5000/user-service:v0.3.6
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: 128Mi
+              cpi: 500m
           ports:
             - containerPort: 5001
 ---
