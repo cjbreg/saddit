@@ -18,11 +18,6 @@ import { UserService } from './user.service';
             durable: false,
           },
         },
-        // transport: Transport.TCP,
-        // options: {
-        //   host: String(process.env.host_user_service),
-        //   port: parseInt(process.env.port_user_service),
-        // },
       },
     ]),
   ],
