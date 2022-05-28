@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: post-service
+  name: frontend
   labels:
-    app: post-service
+    app: frontend
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: post-service
+      app: frontend
   template:
     metadata:
       labels:
-        app: post-service
+        app: frontend
     spec:
       containers:
-        - name: post-service
-          image: localhost:5000/post-service:v0.1
+        - name: frontend
+          image: localhost:5000/frontend:v0.1.5
           imagePullPolicy: IfNotPresent
           resources:
             requests:
@@ -26,31 +26,32 @@ spec:
               memory: 128Mi
               cpi: 500m
           ports:
-            - containerPort: 5002
+            - containerPort: 3000
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: post-service
+  name: frontend-service
 spec:
   selector:
-    app: post-service
+    app: frontend
   ports:
     - protocol: TCP
-      port: 5002
+      port: 80
+      targetPort: 80
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: post-service-ingress
+  name: frontend-ingress
 spec:
   rules:
     - http:
         paths:
-          - path: /post-service
+          - path: /
             pathType: Prefix
             backend:
               service:
-                name: post-service
+                name: frontend-service
                 port:
                   number: 80
