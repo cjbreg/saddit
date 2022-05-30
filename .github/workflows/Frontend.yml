@@ -75,48 +75,49 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-    azure_deployment:
-      needs: build_and_test
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@main
+  azure_deployment:
+    needs: build_and_test
+    name: Push image to Azure and deploy on AKS
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@main
 
-        # Connect to Azure Container Registry (ACR)
-        - uses: azure/docker-login@v1
-          with:
-            login-server: ${{ env.REGISTRY_NAME }}.azurecr.io
-            username: ${{ secrets.REGISTRY_USERNAME }}
-            password: ${{ secrets.REGISTRY_PASSWORD }}
+      # Connect to Azure Container Registry (ACR)
+      - uses: azure/docker-login@v1
+        with:
+          login-server: ${{ env.REGISTRY_NAME }}.azurecr.io
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
 
-        # Container build and push to a Azure Container Registry (ACR)
-        - run: |
-            docker build -t ${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.APP_NAME }}:${{ env.APP_VERSION }} ./src/Frontend/saddit-front
-            docker push ${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.APP_NAME }}:${{ env.APP_VERSION }}
+      # Container build and push to a Azure Container Registry (ACR)
+      - run: |
+          docker build -t ${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.APP_NAME }}:${{ env.APP_VERSION }} ./src/Frontend/saddit-front
+          docker push ${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.APP_NAME }}:${{ env.APP_VERSION }}
 
-        # Set the target Azure Kubernetes Service (AKS) cluster
-        - uses: azure/aks-set-context@v1
-          with:
-            creds: "${{ secrets.AZURE_CREDENTIALS }}"
-            cluster-name: ${{ env.CLUSTER_NAME }}
-            resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
+      # Set the target Azure Kubernetes Service (AKS) cluster
+      - uses: azure/aks-set-context@v1
+        with:
+          creds: "${{ secrets.AZURE_CREDENTIALS }}"
+          cluster-name: ${{ env.CLUSTER_NAME }}
+          resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
 
-        # Create image pull secret for ACR
-        - uses: azure/k8s-create-secret@v1
-          with:
-            container-registry-url: ${{ env.REGISTRY_NAME }}.azurecr.io
-            container-registry-username: ${{ secrets.REGISTRY_USERNAME }}
-            container-registry-password: ${{ secrets.REGISTRY_PASSWORD }}
-            secret-name: ${{ env.SECRET }}
-            namespace: ${{ env.NAMESPACE }}
-            arguments: --force true
+      # Create image pull secret for ACR
+      - uses: azure/k8s-create-secret@v1
+        with:
+          container-registry-url: ${{ env.REGISTRY_NAME }}.azurecr.io
+          container-registry-username: ${{ secrets.REGISTRY_USERNAME }}
+          container-registry-password: ${{ secrets.REGISTRY_PASSWORD }}
+          secret-name: ${{ env.SECRET }}
+          namespace: ${{ env.NAMESPACE }}
+          arguments: --force true
 
-        # Deploy app to AKS
-        - uses: azure/k8s-deploy@v1
-          with:
-            manifests: |
-              ${{ github.workspace }}/k8s/frontend/frontend-deployment.yaml
-            images: |
-              ${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.APP_NAME }}:${{ env.APP_VERSION }}
-            imagepullsecrets: |
-              ${{ env.SECRET }}
-            namespace: ${{ env.NAMESPACE }}
+      # Deploy app to AKS
+      - uses: azure/k8s-deploy@v1
+        with:
+          manifests: |
+            ${{ github.workspace }}/k8s/frontend/frontend-deployment.yaml
+          images: |
+            ${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.APP_NAME }}:${{ env.APP_VERSION }}
+          imagepullsecrets: |
+            ${{ env.SECRET }}
+          namespace: ${{ env.NAMESPACE }}

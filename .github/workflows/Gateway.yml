@@ -77,6 +77,7 @@ jobs:
 
   azure_deployment:
     needs: build_and_test
+    name: Push image to Azure and deploy on AKS
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@main
