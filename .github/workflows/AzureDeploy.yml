@@ -6,8 +6,6 @@ on:
       - "src/Frontend/saddit-front/**"
     branches:
       - master
-      - develop
-      - feature/**
   pull_request:
     branches: [master]
 
