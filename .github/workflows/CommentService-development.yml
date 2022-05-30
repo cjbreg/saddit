@@ -1,15 +1,15 @@
-name: Frontend CI
+name: CommentService CI
 
 on:
   push:
     paths:
-      - "src/Frontend/saddit-front/**"
+      - "src/Services/comment-service/**"
     branches:
       - master
       - develop
       - feature/**
   pull_request:
-    branches: [development]
+    branches: [master]
 
 jobs:
   build:
@@ -18,7 +18,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: "./src/Frontend/saddit-front"
+        working-directory: "./src/Services/comment-service"
 
     strategy:
       matrix:
@@ -32,10 +32,10 @@ jobs:
         with:
           node-version: ${{matrix.node-version}}
           cache: "yarn"
-          cache-dependency-path: ./src/Frontend/saddit-front/yarn.lock
+          cache-dependency-path: ./src/Services/comment-service/yarn.lock
 
       - name: Run build
-        working-directory: src/Frontend/saddit-front
+        working-directory: src/Services/comment-service
         run: yarn
 
   test:
@@ -45,7 +45,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: "./src/Frontend/saddit-front"
+        working-directory: "./src/Services/comment-service"
 
     strategy:
       matrix:
@@ -59,12 +59,12 @@ jobs:
         with:
           node-version: ${{matrix.node-version}}
           cache: "yarn"
-          cache-dependency-path: ./src/Frontend/saddit-front/yarn.lock
+          cache-dependency-path: ./src/Services/comment-service/yarn.lock
 
       - name: Run build
-        working-directory: src/Frontend/saddit-front
+        working-directory: src/Services/comment-service
         run: yarn
 
       - name: Run Tests
-        working-directory: src/Frontend/saddit-front
-        run: yarn test
+        working-directory: src/Services/comment-service
+        run: yarn test:cov
