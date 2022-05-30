@@ -6,7 +6,6 @@ on:
       - "src/Services/gateway/**"
     branches:
       - develop
-      - master
       - feature/**
   pull_request:
     branches: [master, develop]

@@ -5,7 +5,6 @@ on:
     paths:
       - "src/Services/user-service/**"
     branches:
-      - master
       - develop
       - feature/**
   pull_request:
