@@ -47,7 +47,7 @@ jobs:
         working-directory: src/Services/comment-service
         run: yarn test:cov
 
-  push_to_registry:
+  push_image_to_dockerhub:
     needs: build_and_test
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
