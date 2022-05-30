@@ -2,8 +2,8 @@
 name: Azure Deployment Test CI
 on:
   push:
-    # paths:
-    #   - "src/Frontend/saddit-front/**"
+    paths:
+      - "src/Frontend/saddit-front/**"
     branches:
       - master
       - develop
