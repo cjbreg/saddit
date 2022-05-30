@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: gateway
-          image: SadditS6.azurecr.io/gateway:v0.3.9
+          image: SadditS6.azurecr.io/gateway:v0.4.0
           imagePullPolicy: IfNotPresent
           resources:
             requests:
