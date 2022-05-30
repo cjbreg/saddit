@@ -17,7 +17,7 @@ env:
   CLUSTER_RESOURCE_GROUP: saddit-resource-group
   APP_NAME: frontend
   SECRET: githubaction
-  APP_VERSION: "v0.2.3"
+  APP_VERSION: "v0.2.4"
 
 jobs:
   build_and_test:
