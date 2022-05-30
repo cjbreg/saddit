@@ -2,8 +2,8 @@
 name: Azure Deployment Test CI
 on:
   push:
-    paths:
-      - "src/Frontend/saddit-front/**"
+    # paths:
+    #   - "src/Frontend/saddit-front/**"
     branches:
       - master
       - develop
@@ -32,5 +32,5 @@ jobs:
 
       # Container build and push to a Azure Container Registry (ACR)
       - run: |
-          docker build . -t ${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.APP_NAME }}:v0.1.1 ./Frontend/saddit-front
+          docker build -t ${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.APP_NAME }}:v0.1.1 ./Frontend/saddit-front
           docker push ${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.APP_NAME }}:v0.1.1
