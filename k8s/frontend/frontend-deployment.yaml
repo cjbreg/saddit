@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -16,15 +17,15 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: localhost:5000/frontend:v0.1.5
+          image: SadditS6.azurecr.io/frontend:v0.2.4
           imagePullPolicy: IfNotPresent
           resources:
             requests:
-              memory: "64Mi"
-              cpu: "250m"
+              memory: 64Mi
+              cpu: 250m
             limits:
-              memory: 128Mi
-              cpi: 500m
+              memory: 500Mi
+              cpu: 500m
           ports:
             - containerPort: 3000
 ---
@@ -33,6 +34,7 @@ kind: Service
 metadata:
   name: frontend-service
 spec:
+  type: LoadBalancer
   selector:
     app: frontend
   ports:
