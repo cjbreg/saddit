@@ -15,10 +15,12 @@ env:
   REGISTRY_NAME: SadditS6
   CLUSTER_NAME: SadditS6
   CLUSTER_RESOURCE_GROUP: saddit-resource-group
-  APP_NAME: frontend-saddit
+  APP_NAME: frontend
+  SECRET: githubaction
+  APP_VERSION: "v0.2.3"
 
 jobs:
-  build:
+  azure_deployment:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@main
@@ -32,5 +34,33 @@ jobs:
 
       # Container build and push to a Azure Container Registry (ACR)
       - run: |
-          docker build -t ${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.APP_NAME }}:v0.1.1 ./src/Frontend/saddit-front
-          docker push ${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.APP_NAME }}:v0.1.1
+          docker build -t ${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.APP_NAME }}:${{ env.APP_VERSION }} ./src/Frontend/saddit-front
+          docker push ${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.APP_NAME }}:${{ env.APP_VERSION }}
+
+      # Set the target Azure Kubernetes Service (AKS) cluster
+      - uses: azure/aks-set-context@v1
+        with:
+          creds: "${{ secrets.AZURE_CREDENTIALS }}"
+          cluster-name: ${{ env.CLUSTER_NAME }}
+          resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
+
+      # Create image pull secret for ACR
+      - uses: azure/k8s-create-secret@v1
+        with:
+          container-registry-url: ${{ env.REGISTRY_NAME }}.azurecr.io
+          container-registry-username: ${{ secrets.REGISTRY_USERNAME }}
+          container-registry-password: ${{ secrets.REGISTRY_PASSWORD }}
+          secret-name: ${{ env.SECRET }}
+          namespace: ${{ env.NAMESPACE }}
+          arguments: --force true
+
+      # Deploy app to AKS
+      - uses: azure/k8s-deploy@v1
+        with:
+          manifests: |
+            ${{ github.workspace }}/k8s/frontend/frontend-deployment.yaml
+          images: |
+            ${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.APP_NAME }}:${{ env.APP_VERSION }}
+          imagepullsecrets: |
+            ${{ env.SECRET }}
+          namespace: ${{ env.NAMESPACE }}

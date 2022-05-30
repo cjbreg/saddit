@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: localhost:5000/frontend:v0.2.2
+          image: SadditS6.azurecr.io/frontend:v0.2.3
           imagePullPolicy: IfNotPresent
           resources:
             requests:
