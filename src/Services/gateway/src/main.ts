@@ -11,7 +11,7 @@ async function bootstrap() {
   });
 
   const config = new DocumentBuilder()
-    .setTitle('Saddit API')
+    .setTitle('Saddit API service')
     .setDescription('The Saddit API description')
     .setVersion('0.1')
     .addTag('saddit')
