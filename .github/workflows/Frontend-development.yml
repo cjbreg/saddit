@@ -39,6 +39,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{matrix.node-version}}
+          cache: "yarn"
+          cache-dependency-path: ./src/Frontend/saddit-front/yarn.lock
 
       - name: Run build
         working-directory: src/Frontend/saddit-front
@@ -46,7 +48,7 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
-    name: test stage
+    name: Test stage
     needs: build
 
     defaults:
