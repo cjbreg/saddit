@@ -3,8 +3,8 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
-src/Frontend/saddit-front/.env
-src/Services/**/.env
+# src/Frontend/saddit-front/.env
+# src/Services/**/.env
 k8s/**/.env
 
 # User-specific files
