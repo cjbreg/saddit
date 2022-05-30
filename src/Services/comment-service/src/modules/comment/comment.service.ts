@@ -11,7 +11,7 @@ export class CommentService {
   ) {}
 
   getHello(): string {
-    return 'Hello Comment service';
+    return 'Hello Comment service!';
   }
 
   findAll(): Promise<Comment[]> {

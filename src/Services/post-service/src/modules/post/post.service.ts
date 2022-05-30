@@ -12,7 +12,7 @@ export class PostService {
   ) {}
 
   getHello(): string {
-    return 'Hello Post service';
+    return 'Hello Post service!';
   }
 
   findAll(): Promise<Post[]> {
