@@ -6,10 +6,6 @@ on:
       - "src/Services/post-service/**"
     branches:
       - master
-      - develop
-      - feature/**
-  pull_request:
-    branches: [master]
 
 env:
   REGISTRY_NAME: SadditS6
