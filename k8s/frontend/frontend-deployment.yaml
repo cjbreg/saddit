@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: coenbreg/saddit-react-frontend:feature-azure
+          image: localhost:5000/frontend:v0.2.2
           imagePullPolicy: IfNotPresent
           resources:
             requests:
