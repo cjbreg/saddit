@@ -1,4 +1,4 @@
-name: PostService CI
+name: PostService CI/CD
 
 on:
   push:
@@ -20,8 +20,9 @@ env:
   APP_VERSION: "v0.1.1"
 
 jobs:
-  build_and_test:
+  build:
     runs-on: ubuntu-latest
+    name: Build stage
 
     defaults:
       run:
@@ -38,6 +39,35 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{matrix.node-version}}
+          cache: "yarn"
+          cache-dependency-path: ./src/Services/post-service/yarn.lock
+
+      - name: Run build
+        working-directory: src/Services/post-service
+        run: yarn
+
+  test:
+    runs-on: ubuntu-latest
+    name: Test stage
+    needs: build
+
+    defaults:
+      run:
+        working-directory: "./src/Services/post-service"
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{matrix.node-version}}
+          cache: "yarn"
+          cache-dependency-path: ./src/Services/post-service/yarn.lock
 
       - name: Run build
         working-directory: src/Services/post-service
@@ -48,7 +78,7 @@ jobs:
         run: yarn test:cov
 
   push_image_to_dockerhub:
-    needs: build_and_test
+    needs: [build, test]
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
     steps:

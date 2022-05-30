@@ -1,31 +1,28 @@
-name: Gateway CI
+name: CommentService CI/CD
 
 on:
   push:
     paths:
-      - "src/Services/gateway/**"
+      - "src/Services/comment-service/**"
     branches:
-      - develop
       - master
-      - feature/**
-  pull_request:
-    branches: [master]
 
 env:
   REGISTRY_NAME: SadditS6
   CLUSTER_NAME: SadditS6
   CLUSTER_RESOURCE_GROUP: saddit-resource-group
-  APP_NAME: gateway
+  APP_NAME: comment-service
   SECRET: githubaction
-  APP_VERSION: "v0.4.0"
+  APP_VERSION: "v0.1.1"
 
 jobs:
-  build_and_test:
+  build:
     runs-on: ubuntu-latest
+    name: Build stage
 
     defaults:
       run:
-        working-directory: "./src/Services/gateway"
+        working-directory: "./src/Services/comment-service"
 
     strategy:
       matrix:
@@ -38,17 +35,46 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{matrix.node-version}}
+          cache: "yarn"
+          cache-dependency-path: ./src/Services/comment-service/yarn.lock
 
       - name: Run build
-        working-directory: src/Services/gateway
+        working-directory: src/Services/comment-service
+        run: yarn
+
+  test:
+    runs-on: ubuntu-latest
+    name: Test stage
+    needs: build
+
+    defaults:
+      run:
+        working-directory: "./src/Services/comment-service"
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{matrix.node-version}}
+          cache: "yarn"
+          cache-dependency-path: ./src/Services/comment-service/yarn.lock
+
+      - name: Run build
+        working-directory: src/Services/comment-service
         run: yarn
 
       - name: Run Tests
-        working-directory: src/Services/gateway
+        working-directory: src/Services/comment-service
         run: yarn test:cov
 
   push_image_to_dockerhub:
-    needs: build_and_test
+    needs: [build, test]
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
     steps:
@@ -65,12 +91,12 @@ jobs:
         id: meta
         uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
         with:
-          images: coenbreg/saddit-gateway
+          images: coenbreg/saddit-comment-service
 
       - name: Build and push Docker image
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
-          context: ./src/Services/gateway
+          context: ./src/Services/comment-service
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
@@ -91,7 +117,7 @@ jobs:
 
       # Container build and push to a Azure Container Registry (ACR)
       - run: |
-          docker build -t ${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.APP_NAME }}:${{ env.APP_VERSION }} ./src/Services/gateway
+          docker build -t ${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.APP_NAME }}:${{ env.APP_VERSION }} ./src/Services/comment-service
           docker push ${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.APP_NAME }}:${{ env.APP_VERSION }}
 
       # Set the target Azure Kubernetes Service (AKS) cluster
@@ -115,7 +141,7 @@ jobs:
       - uses: azure/k8s-deploy@v1
         with:
           manifests: |
-            ${{ github.workspace }}/k8s/gateway/gateway-deployment.yaml
+            ${{ github.workspace }}/k8s/microservices/comment-service/comment-service.yaml
           images: |
             ${{ env.REGISTRY_NAME }}.azurecr.io/${{ env.APP_NAME }}:${{ env.APP_VERSION }}
           imagepullsecrets: |
