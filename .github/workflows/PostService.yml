@@ -75,7 +75,7 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
   azure_deployment:
-    needs: build_and_test
+    needs: push_image_to_dockerhub
     name: Push image to Azure and deploy on AKS
     runs-on: ubuntu-latest
     steps:
