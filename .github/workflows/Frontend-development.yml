@@ -1,0 +1,76 @@
+name: Frontend CI
+
+on:
+  push:
+    # paths:
+    #   - "src/Frontend/saddit-front/**"
+    branches:
+      - master
+      - develop
+      - feature/**
+  pull_request:
+    branches: [development]
+
+env:
+  REGISTRY_NAME: SadditS6
+  CLUSTER_NAME: SadditS6
+  CLUSTER_RESOURCE_GROUP: saddit-resource-group
+  APP_NAME: frontend
+  SECRET: githubaction
+  APP_VERSION: "v0.2.4"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build stage
+
+    defaults:
+      run:
+        working-directory: "./src/Frontend/saddit-front"
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{matrix.node-version}}
+
+      - name: Run build
+        working-directory: src/Frontend/saddit-front
+        run: yarn
+
+  test:
+    runs-on: ubuntu-latest
+    name: test stage
+    needs: build
+
+    defaults:
+      run:
+        working-directory: "./src/Frontend/saddit-front"
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{matrix.node-version}}
+          cache: "yarn"
+          cache-dependency-path: ./src/Frontend/saddit-front/yarn.lock
+
+      - name: Run build
+        working-directory: src/Frontend/saddit-front
+        run: yarn
+
+      - name: Run Tests
+        working-directory: src/Frontend/saddit-front
+        run: yarn test
