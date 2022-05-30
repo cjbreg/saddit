@@ -1,25 +1,22 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { PostController } from './post.controller';
 import { PostService } from './post.service';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     ClientsModule.register([
       {
         name: 'POST_SERVICE',
-        // transport: Transport.RMQ,
-        // options: {
-        //   urls: ['amqp://Coen:Password@rabbitmq:5672'],
-        //   queue: 'saddit-post-queue',
-        //   queueOptions: {
-        //     durable: false,
-        //   },
-        // },
-        transport: Transport.TCP,
+        transport: Transport.RMQ,
         options: {
-          host: 'post-service',
-          port: 5002,
+          urls: [String(process.env.rabbitmq_url)],
+          queue: String(process.env.rabbitmq_queue_post),
+          queueOptions: {
+            durable: false,
+          },
         },
       },
     ]),

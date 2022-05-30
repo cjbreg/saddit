@@ -6,12 +6,12 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   app.enableCors({
-    origin: 'http://localhost:3001',
+    origin: 'http://20.54.89.32',
     credentials: true,
   });
 
   const config = new DocumentBuilder()
-    .setTitle('Saddit API')
+    .setTitle('Saddit API service')
     .setDescription('The Saddit API description')
     .setVersion('0.1')
     .addTag('saddit')

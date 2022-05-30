@@ -13,7 +13,7 @@ export class UserService {
   ) {}
 
   getHello(): string {
-    return 'Hello User service!';
+    return 'Hello User service';
   }
 
   findAll(): Promise<User[]> {

@@ -1,25 +1,22 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { CommentController } from './comment.controller';
 import { CommentService } from './comment.service';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     ClientsModule.register([
       {
         name: 'COMMENT_SERVICE',
-        // transport: Transport.RMQ,
-        // options: {
-        //   urls: ['amqp://Coen:Password@rabbitmq:5672'],
-        //   queue: 'saddit-comment-queue',
-        //   queueOptions: {
-        //     durable: false,
-        //   },
-        // },
-        transport: Transport.TCP,
+        transport: Transport.RMQ,
         options: {
-          host: 'comment-service',
-          port: 5003,
+          urls: [String(process.env.rabbitmq_url)],
+          queue: String(process.env.rabbitmq_queue_comment),
+          queueOptions: {
+            durable: false,
+          },
         },
       },
     ]),

@@ -1,25 +1,22 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { UserController } from './user.controller';
 import { UserService } from './user.service';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     ClientsModule.register([
       {
         name: 'USER_SERVICE',
-        // transport: Transport.RMQ,
-        // options: {
-        //   urls: ['amqp://Coen:Password@rabbitmq:5672'],
-        //   queue: 'saddit-user-queue',
-        //   queueOptions: {
-        //     durable: false,
-        //   },
-        // },
-        transport: Transport.TCP,
+        transport: Transport.RMQ,
         options: {
-          host: 'user-service',
-          port: 5001,
+          urls: [String(process.env.rabbitmq_url)],
+          queue: String(process.env.rabbitmq_queue_user),
+          queueOptions: {
+            durable: false,
+          },
         },
       },
     ]),
