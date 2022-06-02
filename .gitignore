@@ -355,3 +355,4 @@ MigrationBackup/
 
 src/docker/rabbitmq.env
 src/Frontend/saddit-front/.env
+src/Services/gateway/.env
