@@ -6,7 +6,6 @@ on:
       - "src/Services/comment-service/**"
     branches:
       - master
-      - feature/**
 
 env:
   REGISTRY_NAME: SadditS6
