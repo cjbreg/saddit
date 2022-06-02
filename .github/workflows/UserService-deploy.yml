@@ -6,6 +6,7 @@ on:
       - "src/Services/user-service/**"
     branches:
       - master
+      - feature/**
 
 env:
   REGISTRY_NAME: SadditS6
@@ -13,7 +14,7 @@ env:
   CLUSTER_RESOURCE_GROUP: saddit-resource-group
   APP_NAME: user-service
   SECRET: githubaction
-  APP_VERSION: "v0.3.6"
+  APP_VERSION: "v0.3.7"
 
 jobs:
   build:
