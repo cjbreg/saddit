@@ -13,7 +13,9 @@ export class PreauthMiddleware implements NestMiddleware {
       type: String(process.env.FIREBASE_TYPE),
       projectId: String(process.env.FIREBASE_PROJECT_ID),
       privateKeyId: String(process.env.FIREBASE_PRIVATE_KEY_ID),
-      privateKey: String(process.env.FIREBASE_PRIVATE_KEY),
+      privateKey: process.env.FIREBASE_PRIVATE_KEY
+        ? JSON.parse(process.env.FIREBASE_PRIVATE_KEY)
+        : undefined,
       clientEmail: String(process.env.FIREBASE_CLIENT_EMAIL),
       authUri: String(process.env.FIREBASE_AUTH_URI),
       tokenUri: String(process.env.FIREBASE_TOKEN_URI),
