@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: user-service
-          image: SadditS6.azurecr.io/user-service:v0.3.8
+          image: SadditS6.azurecr.io/user-service:v0.3.9
           imagePullPolicy: IfNotPresent
           resources:
             requests:

@@ -6,7 +6,6 @@ import { User } from './modules/user/user.entity';
 
 @Module({
   imports: [
-    UserModule,
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'mysql',
@@ -17,8 +16,8 @@ import { User } from './modules/user/user.entity';
       database: String(process.env.mysql_database),
       entities: [User],
       synchronize: true,
-      autoLoadEntities: true,
     }),
+    UserModule,
   ],
   controllers: [],
   providers: [],
