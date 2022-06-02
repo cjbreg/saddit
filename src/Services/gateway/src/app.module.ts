@@ -13,10 +13,10 @@ import { PostModule, UserModule, CommentModule } from './modules';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
     UserModule,
     PostModule,
     CommentModule,
-    ConfigModule.forRoot({ isGlobal: true }),
   ],
   controllers: [AppController],
   providers: [AppService],
