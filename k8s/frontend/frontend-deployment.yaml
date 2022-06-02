@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: SadditS6.azurecr.io/frontend:v0.2.4
+          image: SadditS6.azurecr.io/frontend:v0.2.5
           imagePullPolicy: IfNotPresent
           resources:
             requests:
@@ -29,7 +29,7 @@ spec:
           ports:
             - containerPort: 3000
           envFrom:
-            configMapRef:
+            - configMapRef:
               name: frontend-env
 ---
 apiVersion: v1
