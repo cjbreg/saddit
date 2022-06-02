@@ -14,7 +14,7 @@ env:
   CLUSTER_RESOURCE_GROUP: saddit-resource-group
   APP_NAME: gateway
   SECRET: githubaction
-  APP_VERSION: "v0.4.2"
+  APP_VERSION: "v0.4.3"
 
 jobs:
   build:
