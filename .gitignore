@@ -357,3 +357,5 @@ src/docker/rabbitmq.env
 src/Frontend/saddit-front/.env
 src/Services/gateway/.env
 src/Services/user-service/.env
+src/Services/post-service/.env
+src/Services/comment-service/.env
