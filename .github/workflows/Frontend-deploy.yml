@@ -6,7 +6,6 @@ on:
       - "src/Frontend/saddit-front/**"
     branches:
       - master
-      - feature/**
 
 env:
   REGISTRY_NAME: SadditS6
