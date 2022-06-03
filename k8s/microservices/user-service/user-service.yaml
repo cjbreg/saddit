@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: user-service
-          image: SadditS6.azurecr.io/user-service:v0.3.6
+          image: SadditS6.azurecr.io/user-service:v0.3.8
           imagePullPolicy: IfNotPresent
           resources:
             requests:
@@ -28,6 +28,9 @@ spec:
               cpu: 500m
           ports:
             - containerPort: 5001
+          envFrom:
+            - configMapRef:
+                name: user-env
 ---
 apiVersion: v1
 kind: Service

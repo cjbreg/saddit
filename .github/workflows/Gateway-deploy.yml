@@ -6,6 +6,7 @@ on:
       - "src/Services/gateway/**"
     branches:
       - master
+      - feature/**
 
 env:
   REGISTRY_NAME: SadditS6
@@ -13,7 +14,7 @@ env:
   CLUSTER_RESOURCE_GROUP: saddit-resource-group
   APP_NAME: gateway
   SECRET: githubaction
-  APP_VERSION: "v0.4.0"
+  APP_VERSION: "v0.4.3"
 
 jobs:
   build:
