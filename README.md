@@ -2,7 +2,7 @@
 
 Reddit Clone for a school project
 
-## Workflow resluts
+## Workflow results
 
 ||Development|Deployment|
 |---|---|---|
