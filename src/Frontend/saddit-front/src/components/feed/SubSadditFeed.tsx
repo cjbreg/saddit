@@ -12,7 +12,7 @@ const SubSadditFeed = () => {
     return (
       <Box p="4" maxW="500px" borderRadius={8} backgroundColor={"gray.800"}>
         <Flex align="baseline" mb={2}>
-          <Text>No posts yet.</Text>
+          <Text>No posts yet</Text>
         </Flex>
       </Box>
     );
