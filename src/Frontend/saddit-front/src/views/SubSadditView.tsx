@@ -13,6 +13,7 @@ const SubSadditView = () => {
 
   useEffect(() => {
     requestPosts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [subSadditName]);
 
   const requestPosts = () => {

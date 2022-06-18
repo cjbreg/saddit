@@ -13,6 +13,7 @@ const SadditFeed = () => {
 
   useEffect(() => {
     requestPosts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const requestPosts = () => {
