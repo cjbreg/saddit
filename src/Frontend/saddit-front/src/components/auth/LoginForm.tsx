@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { auth } from "./auth.service";
 import { useDispatch } from "react-redux";
-import { fetchAccessToken, signIn } from "../../store/actions";
+import { signIn } from "../../store/actions";
 
 type Props = {
   closeForm(): void;

@@ -12,8 +12,12 @@ const SubSadditView = () => {
   let { subSadditName } = useParams();
 
   useEffect(() => {
-    dispatch(fetchSubSadditPosts(subSadditName));
+    requestPosts();
   }, [subSadditName]);
+
+  const requestPosts = () => {
+    dispatch(fetchSubSadditPosts(subSadditName));
+  };
 
   return (
     <Box w="100%">

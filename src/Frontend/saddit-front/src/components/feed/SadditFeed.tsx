@@ -12,8 +12,12 @@ const SadditFeed = () => {
   const { posts, loading, error } = useSelector((state: State) => state.post);
 
   useEffect(() => {
-    dispatch(fetchPosts());
+    requestPosts();
   }, []);
+
+  const requestPosts = () => {
+    dispatch(fetchPosts());
+  };
 
   const renderPosts = () => {
     return (

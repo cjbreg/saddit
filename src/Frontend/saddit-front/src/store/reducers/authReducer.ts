@@ -5,7 +5,6 @@ import {
   AUTH_SIGNED_IN,
   AUTH_SIGN_IN,
   FIREBASE_FETCHED_ACCESS_TOKEN,
-  FIREBASE_FETCH_ACCESS_TOKEN,
   SAGA_ERROR,
 } from "../actions";
 import { produce } from "immer";

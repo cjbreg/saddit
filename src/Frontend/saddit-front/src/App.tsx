@@ -1,7 +1,6 @@
 import React from "react";
 import Home from "./views/Home";
 import { Routes, Route } from "react-router-dom";
-import LoadingView from "./views/LoadingView";
 import SubSadditView from "./views/SubSadditView";
 const App = () => {
   const renderApp = () => {
