@@ -45,7 +45,7 @@ const SadditFeed = () => {
   if (loading) {
     return (
       <Box>
-        <Text>loading</Text>
+        <Text>loading.</Text>
       </Box>
     );
   }
