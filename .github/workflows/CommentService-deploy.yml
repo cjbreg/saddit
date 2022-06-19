@@ -13,7 +13,7 @@ env:
   CLUSTER_RESOURCE_GROUP: saddit-resource-group
   APP_NAME: comment-service
   SECRET: githubaction
-  APP_VERSION: "v0.1.1"
+  APP_VERSION: "v0.1.2"
 
 jobs:
   build:

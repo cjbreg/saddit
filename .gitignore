@@ -3,7 +3,7 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
-# src/Frontend/saddit-front/.env
+src/Frontend/saddit-front/.env
 # src/Services/**/.env
 k8s/**/.env
 
@@ -355,3 +355,7 @@ MigrationBackup/
 
 src/docker/rabbitmq.env
 src/Frontend/saddit-front/.env
+src/Services/gateway/.env
+src/Services/user-service/.env
+src/Services/post-service/.env
+src/Services/comment-service/.env

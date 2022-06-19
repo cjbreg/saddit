@@ -12,8 +12,13 @@ const SubSadditView = () => {
   let { subSadditName } = useParams();
 
   useEffect(() => {
-    dispatch(fetchSubSadditPosts(subSadditName));
+    requestPosts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [subSadditName]);
+
+  const requestPosts = () => {
+    dispatch(fetchSubSadditPosts(subSadditName));
+  };
 
   return (
     <Box w="100%">

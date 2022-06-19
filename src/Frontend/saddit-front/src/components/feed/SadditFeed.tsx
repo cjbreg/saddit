@@ -12,8 +12,13 @@ const SadditFeed = () => {
   const { posts, loading, error } = useSelector((state: State) => state.post);
 
   useEffect(() => {
-    dispatch(fetchPosts());
+    requestPosts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const requestPosts = () => {
+    dispatch(fetchPosts());
+  };
 
   const renderPosts = () => {
     return (
@@ -40,7 +45,7 @@ const SadditFeed = () => {
   if (loading) {
     return (
       <Box>
-        <Text>loading</Text>
+        <Text>loading.</Text>
       </Box>
     );
   }

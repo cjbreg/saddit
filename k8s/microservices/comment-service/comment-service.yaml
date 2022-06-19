@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: comment-service
-          image: SadditS6.azurecr.io/comment-service:v0.1.1
+          image: SadditS6.azurecr.io/comment-service:v0.1.2
           imagePullPolicy: IfNotPresent
           resources:
             requests:
@@ -28,6 +28,9 @@ spec:
               cpu: 500m
           ports:
             - containerPort: 5003
+          envFrom:
+            - configMapRef:
+                name: comment-env
 ---
 apiVersion: v1
 kind: Service
