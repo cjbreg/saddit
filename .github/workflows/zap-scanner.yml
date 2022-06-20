@@ -3,7 +3,7 @@ name: Weekly ZAP scanner
 # Controls when the workflow will run
 on:
   schedule:
-    - cron: 0 13 * * 1
+    - cron: 0 18 * * 1
 
 jobs:
   zap_scan:
