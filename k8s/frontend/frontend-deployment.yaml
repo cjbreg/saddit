@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: SadditS6.azurecr.io/frontend:v0.2.6
+          image: coenbreg/saddit-react-frontend:v3.0
           resources:
             requests:
               memory: 64Mi
