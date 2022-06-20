@@ -4,9 +4,6 @@ name: Weekly ZAP scanner
 on:
   schedule:
     - cron: 0 18 * * 1
-  push:
-    branches:
-      - master
 
 jobs:
   zap_scan:
