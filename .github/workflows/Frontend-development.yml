@@ -8,7 +8,7 @@ on:
       - develop
       - feature/**
   pull_request:
-    branches: [master]
+    branches: [master, develop]
 
 jobs:
   build:
@@ -67,3 +67,19 @@ jobs:
       - name: Run Tests
         working-directory: src/Frontend/saddit-front
         run: yarn test
+
+  zap_scan:
+    runs-on: ubuntu-latest
+    name: Scan web application
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: master
+      - name: ZAP scan
+        uses: zaproxy/action-full-scan@v0.4.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          target: "https://i399015.hera.fhict.nl/"
+          rules_file_name: ".zap/rules.tsv"
+          cmd_options: "-a"
