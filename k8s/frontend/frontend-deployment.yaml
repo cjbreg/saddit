@@ -17,8 +17,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: SadditS6.azurecr.io/frontend:v0.2.5
-          imagePullPolicy: IfNotPresent
+          image: SadditS6.azurecr.io/frontend:v0.2.6
           resources:
             requests:
               memory: 64Mi
