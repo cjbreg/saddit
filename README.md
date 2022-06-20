@@ -2,7 +2,7 @@
 
 Reddit Clone for a school project
 
-## Workflow resluts
+## Workflow results
 
 ||Development|Deployment|
 |---|---|---|
@@ -15,3 +15,4 @@ Reddit Clone for a school project
 |SonarCloud|Yaml Validator|ZAP scanner|
 |---|---|---|
 |[![SonarCloud](https://github.com/cjbreg/saddit/actions/workflows/SonarCloud.yml/badge.svg)](https://github.com/cjbreg/saddit/actions/workflows/SonarCloud.yml)|[![Yaml Validator](https://github.com/cjbreg/saddit/actions/workflows/YamlValidator.yml/badge.svg)](https://github.com/cjbreg/saddit/actions/workflows/YamlValidator.yml)|[![ZAP Scanner](https://github.com/cjbreg/saddit/actions/workflows/zap-scanner.yml/badge.svg)](https://github.com/cjbreg/saddit/actions/workflows/zap-scanner.yml)
+
