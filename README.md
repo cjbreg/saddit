@@ -12,6 +12,6 @@ Reddit Clone for a school project
 |Post Service|[![PostService CI](https://github.com/cjbreg/saddit/actions/workflows/PostService-development.yml/badge.svg)](https://github.com/cjbreg/saddit/actions/workflows/PostService-development.yml)|[![PostService CI](https://github.com/cjbreg/saddit/actions/workflows/PostService-deploy.yml/badge.svg)](https://github.com/cjbreg/saddit/actions/workflows/PostService-deploy.yml)|
 |Comment Service|[![UserService CI](https://github.com/cjbreg/saddit/actions/workflows/UserService-development.yml/badge.svg)](https://github.com/cjbreg/saddit/actions/workflows/UserService-development.yml)|[![UserService CI](https://github.com/cjbreg/saddit/actions/workflows/UserService-deploy.yml/badge.svg)](https://github.com/cjbreg/saddit/actions/workflows/UserService-deploy.yml)|
 
-|SonarCloud|Yaml Validator|
-|---|---|
-|[![SonarCloud](https://github.com/cjbreg/saddit/actions/workflows/SonarCloud.yml/badge.svg)](https://github.com/cjbreg/saddit/actions/workflows/SonarCloud.yml)|[![Yaml Validator](https://github.com/cjbreg/saddit/actions/workflows/YamlValidator.yml/badge.svg)](https://github.com/cjbreg/saddit/actions/workflows/YamlValidator.yml)|
+|SonarCloud|Yaml Validator|ZAP scanner|
+|---|---|---|
+|[![SonarCloud](https://github.com/cjbreg/saddit/actions/workflows/SonarCloud.yml/badge.svg)](https://github.com/cjbreg/saddit/actions/workflows/SonarCloud.yml)|[![Yaml Validator](https://github.com/cjbreg/saddit/actions/workflows/YamlValidator.yml/badge.svg)](https://github.com/cjbreg/saddit/actions/workflows/YamlValidator.yml)|[![ZAP Scanner](https://github.com/cjbreg/saddit/actions/workflows/zap-scanner.yml/badge.svg)](https://github.com/cjbreg/saddit/actions/workflows/zap-scanner.yml)
